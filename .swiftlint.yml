@@ -44,7 +44,6 @@ opt_in_rules:
   - redundant_type_annotation
   - strict_fileprivate
   - toggle_bool
-  - trailing_closure
   - unneeded_parentheses_in_closure_argument
   - unused_import
   - vertical_whitespace_closing_braces
@@ -84,7 +83,7 @@ identifier_name:
     - z
 
 indentation_width:
-  indentation_width: 2
+  indentation_width: 4
 
 line_length:
   ignores_urls: true
@@ -99,7 +98,7 @@ private_over_fileprivate:
   validate_extensions: true
 
 trailing_whitespace:
-  ignores_empty_lines: false
+  ignores_empty_lines: true
   ignores_comments: true
 
 vertical_whitespace:
