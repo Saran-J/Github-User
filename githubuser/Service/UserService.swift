@@ -2,7 +2,7 @@ import Foundation
 import Moya
 
 enum UserService {
-    case fetchUser
+    case fetchUser(page: Int, perPage: Int)
     case searchUser
     case fetchUserRepo(user: String)
 }
@@ -36,8 +36,10 @@ extension UserService: TargetType {
     
     var task: Task {
         switch self {
-        case .fetchUser:
-            return .requestPlain
+        case let .fetchUser(page, perPage):
+            return .requestParameters(
+                parameters: ["since": page, "perPage": perPage],
+                encoding: URLEncoding.queryString)
         case .searchUser:
             return .requestPlain
         case .fetchUserRepo:
