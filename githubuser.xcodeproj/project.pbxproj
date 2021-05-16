@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F7576942651AAAD00ADCA06 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576932651AAAD00ADCA06 /* UserService.swift */; };
 		0F8BBACA264ED74D00C6F39B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8BBAC9264ED74D00C6F39B /* AppDelegate.swift */; };
 		0F8BBACC264ED74D00C6F39B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8BBACB264ED74D00C6F39B /* SceneDelegate.swift */; };
 		0F8BBACE264ED74D00C6F39B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8BBACD264ED74D00C6F39B /* ViewController.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F7576932651AAAD00ADCA06 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		0F8BBAC6264ED74D00C6F39B /* githubuser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = githubuser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F8BBAC9264ED74D00C6F39B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F8BBACB264ED74D00C6F39B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +95,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F75767F2651AA1800ADCA06 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0F7576932651AAAD00ADCA06 /* UserService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		0F8BBABD264ED74D00C6F39B = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +128,7 @@
 		0F8BBAC8264ED74D00C6F39B /* githubuser */ = {
 			isa = PBXGroup;
 			children = (
+				0F75767F2651AA1800ADCA06 /* Service */,
 				0F8BBAC9264ED74D00C6F39B /* AppDelegate.swift */,
 				0F8BBACB264ED74D00C6F39B /* SceneDelegate.swift */,
 				0F8BBACD264ED74D00C6F39B /* ViewController.swift */,
@@ -158,7 +169,6 @@
 				83A6467AD81B1325F77B58F9 /* Pods-githubuserTests.debug.xcconfig */,
 				E9A592BA8F522BAC005E5471 /* Pods-githubuserTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -183,6 +193,7 @@
 				0F8BBAC2264ED74D00C6F39B /* Sources */,
 				0F8BBAC3264ED74D00C6F39B /* Frameworks */,
 				0F8BBAC4264ED74D00C6F39B /* Resources */,
+				482563CF61DEA6B75343A417 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -220,6 +231,7 @@
 				0F8BBAE6264ED74E00C6F39B /* Sources */,
 				0F8BBAE7264ED74E00C6F39B /* Frameworks */,
 				0F8BBAE8264ED74E00C6F39B /* Resources */,
+				7C41CC0B3401F867C0800968 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -301,6 +313,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		482563CF61DEA6B75343A417 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-githubuser/Pods-githubuser-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-githubuser/Pods-githubuser-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-githubuser/Pods-githubuser-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6696CCBA2E547510FBCECE3E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -321,6 +350,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7C41CC0B3401F867C0800968 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-githubuser-githubuserUITests/Pods-githubuser-githubuserUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-githubuser-githubuserUITests/Pods-githubuser-githubuserUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-githubuser-githubuserUITests/Pods-githubuser-githubuserUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B206F24C4461C8CDA0C18EB1 /* [CP] Check Pods Manifest.lock */ = {
@@ -375,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F8BBACE264ED74D00C6F39B /* ViewController.swift in Sources */,
+				0F7576942651AAAD00ADCA06 /* UserService.swift in Sources */,
 				0F8BBAD4264ED74D00C6F39B /* githubuser.xcdatamodeld in Sources */,
 				0F8BBACA264ED74D00C6F39B /* AppDelegate.swift in Sources */,
 				0F8BBACC264ED74D00C6F39B /* SceneDelegate.swift in Sources */,
