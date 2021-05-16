@@ -1,13 +1,13 @@
 import Foundation
 import Moya
 
-enum UserService {
+enum UserProvider {
     case fetchUser(page: Int, perPage: Int)
     case searchUser
     case fetchUserRepo(user: String)
 }
 
-extension UserService: TargetType {
+extension UserProvider: TargetType {
     var baseURL: URL {
         return URL(string: "https://api.github.com") ?? URL(fileURLWithPath: "")
     }
