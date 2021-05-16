@@ -1,6 +1,5 @@
 import Foundation
 import Moya
-import RxSwift
 
 class BaseService<Resp: Codable> {
     func translateResponse(result: Result<Response, MoyaError>) throws -> Resp {
