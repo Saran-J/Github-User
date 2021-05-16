@@ -10,7 +10,6 @@
 		0F7576942651AAAD00ADCA06 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576932651AAAD00ADCA06 /* UserProvider.swift */; };
 		0F7576A42651B2AE00ADCA06 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576A32651B2AE00ADCA06 /* BaseService.swift */; };
 		0F8BBACA264ED74D00C6F39B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8BBAC9264ED74D00C6F39B /* AppDelegate.swift */; };
-		0F8BBACC264ED74D00C6F39B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8BBACB264ED74D00C6F39B /* SceneDelegate.swift */; };
 		0F8BBACE264ED74D00C6F39B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8BBACD264ED74D00C6F39B /* ViewController.swift */; };
 		0F8BBAD1264ED74D00C6F39B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F8BBACF264ED74D00C6F39B /* Main.storyboard */; };
 		0F8BBAD4264ED74D00C6F39B /* githubuser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0F8BBAD2264ED74D00C6F39B /* githubuser.xcdatamodeld */; };
@@ -45,7 +44,6 @@
 		0F7576A32651B2AE00ADCA06 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		0F8BBAC6264ED74D00C6F39B /* githubuser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = githubuser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F8BBAC9264ED74D00C6F39B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0F8BBACB264ED74D00C6F39B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0F8BBACD264ED74D00C6F39B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0F8BBAD0264ED74D00C6F39B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0F8BBAD3264ED74D00C6F39B /* githubuser.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = githubuser.xcdatamodel; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 				0F7576A22651B2A000ADCA06 /* Service */,
 				0F75767F2651AA1800ADCA06 /* Provider */,
 				0F8BBAC9264ED74D00C6F39B /* AppDelegate.swift */,
-				0F8BBACB264ED74D00C6F39B /* SceneDelegate.swift */,
 				0F8BBACD264ED74D00C6F39B /* ViewController.swift */,
 				0F8BBACF264ED74D00C6F39B /* Main.storyboard */,
 				0F8BBAD5264ED74E00C6F39B /* Assets.xcassets */,
@@ -436,7 +433,6 @@
 				0F7576A42651B2AE00ADCA06 /* BaseService.swift in Sources */,
 				0F8BBAD4264ED74D00C6F39B /* githubuser.xcdatamodeld in Sources */,
 				0F8BBACA264ED74D00C6F39B /* AppDelegate.swift in Sources */,
-				0F8BBACC264ED74D00C6F39B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,7 +538,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -597,7 +593,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
