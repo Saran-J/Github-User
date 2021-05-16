@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0F7576942651AAAD00ADCA06 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576932651AAAD00ADCA06 /* UserProvider.swift */; };
+		0F7576A42651B2AE00ADCA06 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576A32651B2AE00ADCA06 /* BaseService.swift */; };
 		0F8BBACA264ED74D00C6F39B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8BBAC9264ED74D00C6F39B /* AppDelegate.swift */; };
 		0F8BBACC264ED74D00C6F39B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8BBACB264ED74D00C6F39B /* SceneDelegate.swift */; };
 		0F8BBACE264ED74D00C6F39B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8BBACD264ED74D00C6F39B /* ViewController.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		0F7576932651AAAD00ADCA06 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
+		0F7576A32651B2AE00ADCA06 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		0F8BBAC6264ED74D00C6F39B /* githubuser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = githubuser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F8BBAC9264ED74D00C6F39B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F8BBACB264ED74D00C6F39B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +105,14 @@
 			path = Provider;
 			sourceTree = "<group>";
 		};
+		0F7576A22651B2A000ADCA06 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0F7576A32651B2AE00ADCA06 /* BaseService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		0F8BBABD264ED74D00C6F39B = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +138,7 @@
 		0F8BBAC8264ED74D00C6F39B /* githubuser */ = {
 			isa = PBXGroup;
 			children = (
+				0F7576A22651B2A000ADCA06 /* Service */,
 				0F75767F2651AA1800ADCA06 /* Provider */,
 				0F8BBAC9264ED74D00C6F39B /* AppDelegate.swift */,
 				0F8BBACB264ED74D00C6F39B /* SceneDelegate.swift */,
@@ -422,6 +433,7 @@
 			files = (
 				0F8BBACE264ED74D00C6F39B /* ViewController.swift in Sources */,
 				0F7576942651AAAD00ADCA06 /* UserProvider.swift in Sources */,
+				0F7576A42651B2AE00ADCA06 /* BaseService.swift in Sources */,
 				0F8BBAD4264ED74D00C6F39B /* githubuser.xcdatamodeld in Sources */,
 				0F8BBACA264ED74D00C6F39B /* AppDelegate.swift in Sources */,
 				0F8BBACC264ED74D00C6F39B /* SceneDelegate.swift in Sources */,
