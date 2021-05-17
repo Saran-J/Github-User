@@ -1,7 +1,21 @@
 import Foundation
 import Moya
+import RxSwift
 
-class BaseService<Resp: Codable> {
+class BaseService<Type: TargetType, Resp: Codable> {
+    func callService(target: Type) -> Observable<Resp> {
+        let observable = Observable<Result<Response, MoyaError>>.create { observer in
+            let provider = MoyaProvider<Type>(plugins: [NetworkLoggerPlugin()])
+            provider.request(target) { response in
+                observer.onNext(response)
+            }
+            return Disposables.create()
+        }
+        return observable.map { response in
+            try self.translateResponse(result: response)
+        }
+    }
+    
     func translateResponse(result: Result<Response, MoyaError>) throws -> Resp {
         switch result {
         case .success(let resp):
