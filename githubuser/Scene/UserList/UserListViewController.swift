@@ -12,6 +12,10 @@ class UserListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    static func initFromStoryboard() -> UserListViewController? {
+        return UIStoryboard(name: "UserList", bundle: nil).instantiateInitialViewController() as? UserListViewController
+    }
+    
     // MARK: Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
