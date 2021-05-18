@@ -7,6 +7,7 @@ target 'githubuser' do
   pod 'Moya'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'Kingfisher', '~> 6.0'
 
   # Pods for githubuser
 
