@@ -13,6 +13,7 @@
 		0F55533F265424C4004E7B42 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F555339265424C4004E7B42 /* UserListViewController.swift */; };
 		0F555340265424C4004E7B42 /* UserListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F55533A265424C4004E7B42 /* UserListInteractor.swift */; };
 		0F55534926543240004E7B42 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F55534826543240004E7B42 /* StringExtension.swift */; };
+		0F555351265434FE004E7B42 /* UserList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F555350265434FE004E7B42 /* UserList.storyboard */; };
 		0F7576942651AAAD00ADCA06 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576932651AAAD00ADCA06 /* UserProvider.swift */; };
 		0F7576A42651B2AE00ADCA06 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576A32651B2AE00ADCA06 /* BaseService.swift */; };
 		0F8BBACA264ED74D00C6F39B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8BBAC9264ED74D00C6F39B /* AppDelegate.swift */; };
@@ -55,6 +56,7 @@
 		0F555339265424C4004E7B42 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		0F55533A265424C4004E7B42 /* UserListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListInteractor.swift; sourceTree = "<group>"; };
 		0F55534826543240004E7B42 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		0F555350265434FE004E7B42 /* UserList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserList.storyboard; sourceTree = "<group>"; };
 		0F7576932651AAAD00ADCA06 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
 		0F7576A32651B2AE00ADCA06 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		0F8BBAC6264ED74D00C6F39B /* githubuser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = githubuser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +131,7 @@
 				0F555338265424C4004E7B42 /* UserListModels.swift */,
 				0F555339265424C4004E7B42 /* UserListViewController.swift */,
 				0F55533A265424C4004E7B42 /* UserListInteractor.swift */,
+				0F555350265434FE004E7B42 /* UserList.storyboard */,
 			);
 			path = UserList;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F8BBAD9264ED74E00C6F39B /* LaunchScreen.storyboard in Resources */,
+				0F555351265434FE004E7B42 /* UserList.storyboard in Resources */,
 				0F8BBAD6264ED74E00C6F39B /* Assets.xcassets in Resources */,
 				0F8BBAD1264ED74D00C6F39B /* Main.storyboard in Resources */,
 			);
