@@ -1,9 +1,11 @@
 import UIKit
 
 protocol UserListDisplayLogic: class {
+    func displayUserList(viewModel: UserList.FetchUserList.ViewModel)
+    func displaySearchUser(viewModel: UserList.SearchUser.ViewModel)
 }
 
-class UserListViewController: UIViewController, UserListDisplayLogic {
+class UserListViewController: UIViewController {
     var interactor: UserListBusinessLogic?
     var router: (NSObjectProtocol & UserListRoutingLogic & UserListDataPassing)?
     
@@ -45,5 +47,13 @@ class UserListViewController: UIViewController, UserListDisplayLogic {
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+}
+
+extension UserListViewController: UserListDisplayLogic {
+    func displayUserList(viewModel: UserList.FetchUserList.ViewModel) {
+    }
+    
+    func displaySearchUser(viewModel: UserList.SearchUser.ViewModel) {
     }
 }
