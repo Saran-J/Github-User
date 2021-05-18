@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F55533B265424C4004E7B42 /* UserListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F555335265424C4004E7B42 /* UserListPresenter.swift */; };
+		0F55533D265424C4004E7B42 /* UserListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F555337265424C4004E7B42 /* UserListRouter.swift */; };
+		0F55533E265424C4004E7B42 /* UserListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F555338265424C4004E7B42 /* UserListModels.swift */; };
+		0F55533F265424C4004E7B42 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F555339265424C4004E7B42 /* UserListViewController.swift */; };
+		0F555340265424C4004E7B42 /* UserListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F55533A265424C4004E7B42 /* UserListInteractor.swift */; };
 		0F7576942651AAAD00ADCA06 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576932651AAAD00ADCA06 /* UserProvider.swift */; };
 		0F7576A42651B2AE00ADCA06 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576A32651B2AE00ADCA06 /* BaseService.swift */; };
 		0F8BBACA264ED74D00C6F39B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8BBAC9264ED74D00C6F39B /* AppDelegate.swift */; };
@@ -43,6 +48,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F555335265424C4004E7B42 /* UserListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListPresenter.swift; sourceTree = "<group>"; };
+		0F555337265424C4004E7B42 /* UserListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListRouter.swift; sourceTree = "<group>"; };
+		0F555338265424C4004E7B42 /* UserListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListModels.swift; sourceTree = "<group>"; };
+		0F555339265424C4004E7B42 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
+		0F55533A265424C4004E7B42 /* UserListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListInteractor.swift; sourceTree = "<group>"; };
 		0F7576932651AAAD00ADCA06 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
 		0F7576A32651B2AE00ADCA06 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		0F8BBAC6264ED74D00C6F39B /* githubuser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = githubuser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +111,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F55533326542499004E7B42 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				0F5553342654249F004E7B42 /* UserList */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		0F5553342654249F004E7B42 /* UserList */ = {
+			isa = PBXGroup;
+			children = (
+				0F555335265424C4004E7B42 /* UserListPresenter.swift */,
+				0F555337265424C4004E7B42 /* UserListRouter.swift */,
+				0F555338265424C4004E7B42 /* UserListModels.swift */,
+				0F555339265424C4004E7B42 /* UserListViewController.swift */,
+				0F55533A265424C4004E7B42 /* UserListInteractor.swift */,
+			);
+			path = UserList;
+			sourceTree = "<group>";
+		};
 		0F75767F2651AA1800ADCA06 /* Provider */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +175,7 @@
 		0F8BBAC8264ED74D00C6F39B /* githubuser */ = {
 			isa = PBXGroup;
 			children = (
+				0F55533326542499004E7B42 /* Scene */,
 				0F7576A22651B2A000ADCA06 /* Service */,
 				0F75767F2651AA1800ADCA06 /* Provider */,
 				0F8BBAC9264ED74D00C6F39B /* AppDelegate.swift */,
@@ -438,13 +469,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F8BBACE264ED74D00C6F39B /* ViewController.swift in Sources */,
+				0F55533B265424C4004E7B42 /* UserListPresenter.swift in Sources */,
+				0F555340265424C4004E7B42 /* UserListInteractor.swift in Sources */,
 				0FE6FE192652F84A00BBEC85 /* GetUserRepoService.swift in Sources */,
 				0F7576942651AAAD00ADCA06 /* UserProvider.swift in Sources */,
 				0F7576A42651B2AE00ADCA06 /* BaseService.swift in Sources */,
+				0F55533E265424C4004E7B42 /* UserListModels.swift in Sources */,
 				0FE6FE142652F5B900BBEC85 /* SearchUserService.swift in Sources */,
+				0F55533F265424C4004E7B42 /* UserListViewController.swift in Sources */,
 				0FE6FE0F2652E79A00BBEC85 /* GetUserService.swift in Sources */,
 				0F8BBAD4264ED74D00C6F39B /* githubuser.xcdatamodeld in Sources */,
 				0F8BBACA264ED74D00C6F39B /* AppDelegate.swift in Sources */,
+				0F55533D265424C4004E7B42 /* UserListRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
