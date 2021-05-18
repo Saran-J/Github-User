@@ -8,6 +8,7 @@ protocol UserListDisplayLogic: class {
 class UserListViewController: UIViewController {
     var interactor: UserListBusinessLogic?
     var router: (NSObjectProtocol & UserListRoutingLogic & UserListDataPassing)?
+    var userListDataSource: [UserListObject] = []
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -57,5 +58,21 @@ extension UserListViewController: UserListDisplayLogic {
     }
     
     func displaySearchUser(viewModel: UserList.SearchUser.ViewModel) {
+    }
+}
+
+extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return userListDataSource.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell") as? UserCell else {
+            return UITableViewCell()
+        }
+        cell.nameLabel.text = userListDataSource[indexPath.row].name
+        cell.urlLabel.text = userListDataSource[indexPath.row].url
+        cell.urlLabel.sizeToFit()
+        return cell
     }
 }

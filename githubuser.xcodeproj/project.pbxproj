@@ -14,6 +14,7 @@
 		0F555340265424C4004E7B42 /* UserListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F55533A265424C4004E7B42 /* UserListInteractor.swift */; };
 		0F55534926543240004E7B42 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F55534826543240004E7B42 /* StringExtension.swift */; };
 		0F555351265434FE004E7B42 /* UserList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F555350265434FE004E7B42 /* UserList.storyboard */; };
+		0F55535F265438F5004E7B42 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F55535E265438F5004E7B42 /* UserCell.swift */; };
 		0F7576942651AAAD00ADCA06 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576932651AAAD00ADCA06 /* UserProvider.swift */; };
 		0F7576A42651B2AE00ADCA06 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576A32651B2AE00ADCA06 /* BaseService.swift */; };
 		0F8BBACA264ED74D00C6F39B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8BBAC9264ED74D00C6F39B /* AppDelegate.swift */; };
@@ -57,6 +58,7 @@
 		0F55533A265424C4004E7B42 /* UserListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListInteractor.swift; sourceTree = "<group>"; };
 		0F55534826543240004E7B42 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		0F555350265434FE004E7B42 /* UserList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserList.storyboard; sourceTree = "<group>"; };
+		0F55535E265438F5004E7B42 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		0F7576932651AAAD00ADCA06 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
 		0F7576A32651B2AE00ADCA06 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		0F8BBAC6264ED74D00C6F39B /* githubuser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = githubuser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +128,7 @@
 		0F5553342654249F004E7B42 /* UserList */ = {
 			isa = PBXGroup;
 			children = (
+				0F555355265438AE004E7B42 /* tableViewCell */,
 				0F555335265424C4004E7B42 /* UserListPresenter.swift */,
 				0F555337265424C4004E7B42 /* UserListRouter.swift */,
 				0F555338265424C4004E7B42 /* UserListModels.swift */,
@@ -142,6 +145,14 @@
 				0F55534826543240004E7B42 /* StringExtension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		0F555355265438AE004E7B42 /* tableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0F55535E265438F5004E7B42 /* UserCell.swift */,
+			);
+			path = tableViewCell;
 			sourceTree = "<group>";
 		};
 		0F75767F2651AA1800ADCA06 /* Provider */ = {
@@ -491,6 +502,7 @@
 				0F7576A42651B2AE00ADCA06 /* BaseService.swift in Sources */,
 				0F55533E265424C4004E7B42 /* UserListModels.swift in Sources */,
 				0FE6FE142652F5B900BBEC85 /* SearchUserService.swift in Sources */,
+				0F55535F265438F5004E7B42 /* UserCell.swift in Sources */,
 				0F55534926543240004E7B42 /* StringExtension.swift in Sources */,
 				0F55533F265424C4004E7B42 /* UserListViewController.swift in Sources */,
 				0FE6FE0F2652E79A00BBEC85 /* GetUserService.swift in Sources */,
