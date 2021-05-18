@@ -93,3 +93,10 @@ extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
         return UITableView.automaticDimension
     }
 }
+
+extension UserListViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
