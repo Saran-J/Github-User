@@ -10,6 +10,18 @@ enum UserList {
             var userListDisplay: [UserListObject]
         }
     }
+    
+    enum SearchUser {
+        struct Request {
+            var keyword: String
+        }
+        struct Response {
+            var searchResponse: SearchUserResponse
+        }
+        struct ViewModel {
+            var userListDisplay: [UserListObject]
+        }
+    }
 }
 
 struct UserListObject {
