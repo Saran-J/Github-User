@@ -141,6 +141,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Github UserList" id="3Ms-J3-yb1"/>
                     <connections>
+                        <outlet property="searchTextfield" destination="kDl-0X-Mrv" id="wtK-2z-Odh"/>
                         <outlet property="tableView" destination="aO2-WN-M0Z" id="2Js-dd-aoF"/>
                     </connections>
                 </viewController>

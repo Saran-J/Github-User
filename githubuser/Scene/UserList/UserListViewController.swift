@@ -1,4 +1,6 @@
 import UIKit
+import RxSwift
+import RxCocoa
 
 protocol UserListDisplayLogic: class {
     func displayUserList(viewModel: UserList.FetchUserList.ViewModel)
@@ -9,8 +11,10 @@ class UserListViewController: UIViewController {
     var interactor: UserListBusinessLogic?
     var router: (NSObjectProtocol & UserListRoutingLogic & UserListDataPassing)?
     var userListDataSource: [UserListObject] = []
+    var disposeBag = DisposeBag()
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchTextfield: UITextField!
     
     static func initFromStoryboard() -> UserListViewController? {
         return UIStoryboard(name: "UserList", bundle: nil).instantiateInitialViewController() as? UserListViewController
@@ -58,7 +62,21 @@ class UserListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        bindingSearchTextfield()
         interactor?.fetchUserList(request: UserList.FetchUserList.Request())
+    }
+    
+    func bindingSearchTextfield() {
+        searchTextfield.rx.controlEvent(.editingChanged)
+            .map { [weak self] () -> String in
+                return self?.searchTextfield.text ?? ""
+            }
+            .distinctUntilChanged()
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
+            .bind { keyword in
+                print(keyword)
+            }
+            .disposed(by: disposeBag)
     }
 }
 
