@@ -55,6 +55,11 @@ class UserListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        interactor?.fetchUserList(request: UserList.FetchUserList.Request())
+    }
 }
 
 extension UserListViewController: UserListDisplayLogic {
@@ -80,8 +85,11 @@ extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
         }
         cell.nameLabel.text = userListDataSource[indexPath.row].name
         cell.urlLabel.text = userListDataSource[indexPath.row].url
-        cell.urlLabel.sizeToFit()
         cell.downloadImage(imageUrl: userListDataSource[indexPath.row].avatarImageUrl)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }
