@@ -19,8 +19,10 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
     var searchUserService = SearchUserService()
     func fetchUserList(request: UserList.FetchUserList.Request) {
         userListService.executeService(page: pageNo, perPage: perPage)
-            .subscribe { userList in
-                print(userList)
+            .subscribe { [weak self] userList in
+                let response = UserList.FetchUserList.Response(
+                    userListRespnse: userList)
+                self?.presenter?.presentUserList(response: response)
             } onError: { error in
                 print(error)
             }
@@ -29,8 +31,10 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
     
     func searchUser(request: UserList.SearchUser.Request) {
         searchUserService.executeService(keyword: request.keyword)
-            .subscribe { searchResponse in
-                print(searchResponse)
+            .subscribe { [weak self] searchResponse in
+                let response = UserList.SearchUser.Response(
+                    searchResponse: searchResponse)
+                self?.presenter?.presentSearchUser(response: response)
             } onError: { error in
                 print(error)
             }
