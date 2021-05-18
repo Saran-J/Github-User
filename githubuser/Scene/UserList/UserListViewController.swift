@@ -55,9 +55,13 @@ class UserListViewController: UIViewController {
 
 extension UserListViewController: UserListDisplayLogic {
     func displayUserList(viewModel: UserList.FetchUserList.ViewModel) {
+        userListDataSource.append(contentsOf: viewModel.userListDisplay)
+        tableView.reloadData()
     }
     
     func displaySearchUser(viewModel: UserList.SearchUser.ViewModel) {
+        userListDataSource.append(contentsOf: viewModel.userListDisplay)
+        tableView.reloadData()
     }
 }
 
