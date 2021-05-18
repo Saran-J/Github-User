@@ -77,6 +77,7 @@ extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
         cell.nameLabel.text = userListDataSource[indexPath.row].name
         cell.urlLabel.text = userListDataSource[indexPath.row].url
         cell.urlLabel.sizeToFit()
+        cell.downloadImage(imageUrl: userListDataSource[indexPath.row].avatarImageUrl)
         return cell
     }
 }
