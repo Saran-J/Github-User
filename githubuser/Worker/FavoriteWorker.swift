@@ -4,6 +4,11 @@ import CoreData
 import RxSwift
 import RxCocoa
 
+struct UserFavoriteModel {
+    var id: Int64
+    var isFavorite: Bool
+}
+
 class FavoriteWorker {
     weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
     var context: NSManagedObjectContext?
@@ -46,19 +51,35 @@ class FavoriteWorker {
         } catch {}
     }
     
-    func fetchFavorite(userId: Int64) -> Bool {
-        guard let context = self.context else { return false }
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Favorite")
-        request.returnsObjectsAsFaults = false
-        do {
-            let result = try context.fetch(request)
-            guard let objectList = result as? [NSManagedObject] else { return false }
-            for data in objectList {
-                if data.value(forKey: "id") as? Int64 == userId {
-                    return data.value(forKey: "favorite") as? Bool ?? false
-                }
+    func fetchFavorite() -> Observable<[UserFavoriteModel]> {
+        return Observable.create { observer in
+            guard let context = self.context else {
+                observer.onError(ServiceError(ErrorType.fetchDBError))
+                return Disposables.create()
             }
-        } catch {}
-        return false
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Favorite")
+            request.returnsObjectsAsFaults = false
+            do {
+                let result = try context.fetch(request)
+                guard let objectList = result as? [NSManagedObject] else {
+                    observer.onError(ServiceError(ErrorType.fetchDBError))
+                    return Disposables.create()
+                }
+                var userFavoriteList: [UserFavoriteModel] = []
+                for data in objectList {
+                    let favoriteModel = UserFavoriteModel(
+                        id: data.value(
+                            forKey: "id") as? Int64 ?? 0,
+                        isFavorite: data.value(
+                            forKey: "favorite") as? Bool ?? false)
+                    userFavoriteList.append(favoriteModel)
+                }
+                observer.onNext(userFavoriteList)
+            } catch {
+                observer.onError(ServiceError(ErrorType.fetchDBError))
+            }
+            
+            return Disposables.create()
+        }
     }
 }
