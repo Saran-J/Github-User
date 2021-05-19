@@ -12,9 +12,11 @@ class UserListPresenter: UserListPresentationLogic {
         var userList: [UserListObject] = []
         response.userListRespnse.forEach { user in
             let userObject = UserListObject(
+                id: Int64(toInt(user.id)),
                 name: toString(user.login),
                 url: toString(user.url),
-                avatarImageUrl: toString(user.avatarUrl))
+                avatarImageUrl: toString(user.avatarUrl),
+                isFavorite: toBool(user.favorite))
             userList.append(userObject)
         }
         let viewModel = UserList.FetchUserList.ViewModel(
@@ -27,9 +29,11 @@ class UserListPresenter: UserListPresentationLogic {
         var userList: [UserListObject] = []
         response.searchResponse.items.forEach { user in
             let userObject = UserListObject(
+                id: Int64(user.id ?? 0),
                 name: toString(user.login),
                 url: toString(user.url),
-                avatarImageUrl: toString(user.avatarUrl))
+                avatarImageUrl: toString(user.avatarUrl),
+                isFavorite: toBool(user.favorite))
             userList.append(userObject)
         }
         let viewModel = UserList.SearchUser.ViewModel(

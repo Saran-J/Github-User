@@ -22,6 +22,7 @@ struct UserItem: Codable {
     var type: String?
     var siteAdmin: Bool?
     var score: Int?
+    var favorite: Bool?
     
     enum CodingKeys: String, CodingKey {
         case login = "login"
@@ -43,6 +44,7 @@ struct UserItem: Codable {
         case type = "type"
         case siteAdmin = "site_admin"
         case score = "score"
+        case favorite = "favorite"
     }
 }
 

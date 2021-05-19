@@ -32,7 +32,9 @@ enum UserList {
 }
 
 struct UserListObject {
+    var id: Int64
     var name: String
     var url: String
     var avatarImageUrl: String
+    var isFavorite: Bool
 }
