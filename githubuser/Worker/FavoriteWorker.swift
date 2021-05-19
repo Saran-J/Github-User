@@ -5,7 +5,7 @@ import RxSwift
 import RxCocoa
 
 class FavoriteWorker {
-    weak let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
     var context: NSManagedObjectContext?
     
     init() {
