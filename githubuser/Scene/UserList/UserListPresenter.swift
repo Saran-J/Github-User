@@ -18,7 +18,8 @@ class UserListPresenter: UserListPresentationLogic {
             userList.append(userObject)
         }
         let viewModel = UserList.FetchUserList.ViewModel(
-            userListDisplay: userList)
+            userListDisplay: userList,
+            shouldReload: response.shouldReload)
         viewController?.displayUserList(viewModel: viewModel)
     }
     
@@ -32,7 +33,8 @@ class UserListPresenter: UserListPresentationLogic {
             userList.append(userObject)
         }
         let viewModel = UserList.SearchUser.ViewModel(
-            userListDisplay: userList)
+            userListDisplay: userList,
+            shouldReload: response.shouldReload)
         viewController?.displaySearchUser(viewModel: viewModel)
     }
 }

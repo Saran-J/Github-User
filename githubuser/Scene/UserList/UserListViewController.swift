@@ -16,6 +16,8 @@ class UserListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchTextfield: UITextField!
     
+    var refreshControl = UIRefreshControl()
+    
     static func initFromStoryboard() -> UserListViewController? {
         return UIStoryboard(name: "UserList", bundle: nil).instantiateInitialViewController() as? UserListViewController
     }
@@ -63,21 +65,34 @@ class UserListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         bindingSearchTextfield()
+        setupTableView()
         fetchUserList(shouldReload: true)
     }
     
     func fetchUserList(shouldReload: Bool) {
-        if shouldReload { userListDataSource = [] }
         let request = UserList.FetchUserList.Request(shouldReload: shouldReload)
         interactor?.fetchUserList(request: request)
     }
     
     func searchUserList(keyword: String, shouldReload: Bool) {
-        if shouldReload { userListDataSource = [] }
         let request = UserList.SearchUser.Request(
             keyword: keyword,
             shouldReload: shouldReload)
         interactor?.searchUser(request: request)
+    }
+    
+    func setupTableView() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Refresh")
+        refreshControl.rx.controlEvent(.valueChanged)
+            .bind { [weak self] _ in
+                guard let keyword = self?.searchTextfield.text, !keyword.isEmpty else {
+                    self?.fetchUserList(shouldReload: true)
+                    return
+                }
+                self?.searchUserList(keyword: keyword, shouldReload: true)
+            }
+        .disposed(by: disposeBag)
+        tableView.addSubview(refreshControl)
     }
     
     func bindingSearchTextfield() {
@@ -98,13 +113,23 @@ class UserListViewController: UIViewController {
 
 extension UserListViewController: UserListDisplayLogic {
     func displayUserList(viewModel: UserList.FetchUserList.ViewModel) {
+        if viewModel.shouldReload { userListDataSource = [] }
         userListDataSource.append(contentsOf: viewModel.userListDisplay)
+        endRefreshing()
         tableView.reloadData()
     }
     
     func displaySearchUser(viewModel: UserList.SearchUser.ViewModel) {
+        if viewModel.shouldReload { userListDataSource = [] }
         userListDataSource.append(contentsOf: viewModel.userListDisplay)
+        endRefreshing()
         tableView.reloadData()
+    }
+    
+    func endRefreshing() {
+        if refreshControl.isRefreshing {
+            refreshControl.endRefreshing()
+        }
     }
 }
 

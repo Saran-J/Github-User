@@ -7,9 +7,11 @@ enum UserList {
         }
         struct Response {
             var userListRespnse: [UserItem]
+            var shouldReload: Bool
         }
         struct ViewModel {
             var userListDisplay: [UserListObject]
+            var shouldReload: Bool
         }
     }
     
@@ -20,9 +22,11 @@ enum UserList {
         }
         struct Response {
             var searchResponse: SearchUserResponse
+            var shouldReload: Bool
         }
         struct ViewModel {
             var userListDisplay: [UserListObject]
+            var shouldReload: Bool
         }
     }
 }

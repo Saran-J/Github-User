@@ -21,7 +21,8 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
         userListService.executeService(page: pageNo, perPage: perPage)
             .subscribe { [weak self] userList in
                 let response = UserList.FetchUserList.Response(
-                    userListRespnse: userList)
+                    userListRespnse: userList,
+                    shouldReload: request.shouldReload)
                 self?.presenter?.presentUserList(response: response)
             } onError: { error in
                 print(error)
@@ -33,7 +34,8 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
         searchUserService.executeService(keyword: request.keyword)
             .subscribe { [weak self] searchResponse in
                 let response = UserList.SearchUser.Response(
-                    searchResponse: searchResponse)
+                    searchResponse: searchResponse,
+                    shouldReload: request.shouldReload)
                 self?.presenter?.presentSearchUser(response: response)
             } onError: { error in
                 print(error)
