@@ -32,16 +32,30 @@ enum UserList {
     
     enum FavoriteUser {
         struct Request {
-            var userId: Int
+            var userId: Int64
             var favorite: Bool
         }
     }
 }
 
-struct UserListObject {
+class UserListObject {
     var id: Int64
     var name: String
     var url: String
     var avatarImageUrl: String
     var isFavorite: Bool
+
+    init(
+        id: Int64,
+        name: String,
+        url: String,
+        avatarImageUrl: String,
+        isFavorite: Bool
+    ) {
+        self.id = id
+        self.name = name
+        self.url = url
+        self.avatarImageUrl = avatarImageUrl
+        self.isFavorite = isFavorite
+    }
 }

@@ -12,6 +12,7 @@ class UserListViewController: UIViewController {
     var router: (NSObjectProtocol & UserListRoutingLogic & UserListDataPassing)?
     var userListDataSource: [UserListObject] = []
     var disposeBag = DisposeBag()
+    let worker = FavoriteWorker()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchTextfield: UITextField!
@@ -161,9 +162,11 @@ extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
         }
         cell.nameLabel.text = userListDataSource[indexPath.row].name
         cell.urlLabel.text = userListDataSource[indexPath.row].url
+        cell.isFavorite = userListDataSource[indexPath.row].isFavorite
          
-        cell.onFavorite = {
-            print("favorite")
+        cell.onFavorite = { [weak self] isFavorite in
+            let userId = self?.userListDataSource[indexPath.row].id
+            self?.updateFavorite(userId: userId, favorite: isFavorite)
         }
         cell.downloadImage(imageUrl: userListDataSource[indexPath.row].avatarImageUrl)
         
@@ -175,6 +178,16 @@ extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
+    }
+    
+    func updateFavorite(userId: Int64?, favorite: Bool) {
+        if let userId = userId {
+            let request = UserList.FavoriteUser.Request(
+                userId: userId,
+                favorite: favorite)
+            interactor?.favoriteUser(request: request)
+            userListDataSource.first { $0.id == userId }?.isFavorite = favorite
+        }
     }
 }
 

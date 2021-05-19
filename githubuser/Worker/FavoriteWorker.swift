@@ -48,7 +48,9 @@ class FavoriteWorker {
                 }
             }
             try context.save()
-        } catch {}
+        } catch {
+            print("Delete data Failed", error.localizedDescription)
+        }
     }
     
     func fetchFavorite() -> Observable<[UserFavoriteModel]> {

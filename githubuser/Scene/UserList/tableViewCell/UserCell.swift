@@ -21,7 +21,7 @@ class UserCell: UITableViewCell {
         }
     }
     
-    var onFavorite: (() -> Void) = {}
+    var onFavorite: ((Bool) -> Void) = { _ in }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,6 +47,6 @@ class UserCell: UITableViewCell {
     
     @IBAction func onClickFavorite() {
         isFavorite.toggle()
-        self.onFavorite()
+        self.onFavorite(isFavorite)
     }
 }

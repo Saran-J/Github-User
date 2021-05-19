@@ -95,6 +95,10 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
     }
     
     func favoriteUser(request: UserList.FavoriteUser.Request) {
-        favoriteWorker.makeFavorite(userId: Int64(request.userId))
+        if request.favorite {
+            favoriteWorker.makeFavorite(userId: request.userId)
+        } else {
+            favoriteWorker.makeUnFavorite(userId: request.userId)
+        }
     }
 }
