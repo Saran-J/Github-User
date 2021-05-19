@@ -49,8 +49,8 @@ struct UserItem: Codable {
 }
 
 class GetUserService: BaseService<UserProvider, [UserItem]> {
-    func executeService(page: Int, perPage: Int) -> Observable<[UserItem]> {
+    func executeService(lastUserId: Int, perPage: Int) -> Observable<[UserItem]> {
         return super.callService(
-            target: UserProvider.fetchUser(page: page, perPage: perPage))
+            target: UserProvider.fetchUser(lastUserId: lastUserId, perPage: perPage))
     }
 }

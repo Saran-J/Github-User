@@ -12,7 +12,7 @@ protocol UserListDataStore {
 
 class UserListInteractor: UserListBusinessLogic, UserListDataStore {
     var perPage: Int = 10
-    var pageNo: Int = 0
+    var lastUserId: Int = 0
     var disposeBag = DisposeBag()
     
     var presenter: UserListPresentationLogic?
@@ -23,12 +23,10 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
     
     func fetchUserList(request: UserList.FetchUserList.Request) {
         if request.shouldReload {
-            pageNo = 0
-        } else {
-            pageNo += 1
+            lastUserId = 0
         }
         let userListObservable = userListService.executeService(
-            page: pageNo,
+            lastUserId: lastUserId,
             perPage: perPage)
         let favoriteUserObservable = fetchFavoriteUser()
         Observable.zip(userListObservable, favoriteUserObservable)
@@ -38,6 +36,7 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
             favoriteList: result.1)
         }
         .subscribe { [weak self] userList in
+            self?.lastUserId = userList.last?.id ?? 0
             let response = UserList.FetchUserList.Response(
                 userListRespnse: userList,
                 shouldReload: request.shouldReload)
@@ -72,9 +71,7 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
     
     func searchUser(request: UserList.SearchUser.Request) {
         if request.shouldReload {
-            pageNo = 0
-        } else {
-            pageNo += 1
+            lastUserId = 0
         }
         let searchUserObservable = searchUserService.executeService(keyword: request.keyword)
         let favoriteUserObservable = fetchFavoriteUser()
@@ -84,6 +81,7 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
             favoriteList: result.1)
         }
         .subscribe { [weak self] searchResponse in
+            self?.lastUserId = searchResponse.last?.id ?? 0
             let response = UserList.SearchUser.Response(
                 searchResponse: searchResponse,
                 shouldReload: request.shouldReload)
