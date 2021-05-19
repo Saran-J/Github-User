@@ -17,6 +17,7 @@ class UserListViewController: UIViewController {
     @IBOutlet weak var searchTextfield: UITextField!
     
     var refreshControl = UIRefreshControl()
+    var isLastPage = false
     
     static func initFromStoryboard() -> UserListViewController? {
         return UIStoryboard(name: "UserList", bundle: nil).instantiateInitialViewController() as? UserListViewController
@@ -85,11 +86,7 @@ class UserListViewController: UIViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "Refresh")
         refreshControl.rx.controlEvent(.valueChanged)
             .bind { [weak self] _ in
-                guard let keyword = self?.searchTextfield.text, !keyword.isEmpty else {
-                    self?.fetchUserList(shouldReload: true)
-                    return
-                }
-                self?.searchUserList(keyword: keyword, shouldReload: true)
+                self?.fetchData(shouldReload: true)
             }
         .disposed(by: disposeBag)
         tableView.addSubview(refreshControl)
@@ -120,6 +117,7 @@ extension UserListViewController: UserListDisplayLogic {
         DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
             if viewModel.shouldReload {
                 self?.tableView.setContentOffset(.zero, animated: true)
+                self?.isLastPage = false
             }
         }
     }
@@ -132,13 +130,23 @@ extension UserListViewController: UserListDisplayLogic {
         DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
             if viewModel.shouldReload {
                 self?.tableView.setContentOffset(.zero, animated: true)
+                self?.isLastPage = false
             }
         }
     }
+    
     func endRefreshing() {
         if refreshControl.isRefreshing {
             refreshControl.endRefreshing()
         }
+    }
+    
+    func fetchData(shouldReload: Bool) {
+        guard let keyword = self.searchTextfield.text, !keyword.isEmpty else {
+            self.fetchUserList(shouldReload: shouldReload)
+            return
+        }
+        self.searchUserList(keyword: keyword, shouldReload: shouldReload)
     }
 }
 
@@ -153,12 +161,17 @@ extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
         }
         cell.nameLabel.text = userListDataSource[indexPath.row].name
         cell.urlLabel.text = userListDataSource[indexPath.row].url
+        cell.urlLabel.sizeToFit()
         cell.downloadImage(imageUrl: userListDataSource[indexPath.row].avatarImageUrl)
+        
+        if indexPath.row == userListDataSource.count - 1 && !isLastPage {
+            fetchData(shouldReload: false)
+        }
         return cell
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return 120
     }
 }
 

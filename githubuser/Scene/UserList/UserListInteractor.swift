@@ -18,6 +18,11 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
     var userListService = GetUserService()
     var searchUserService = SearchUserService()
     func fetchUserList(request: UserList.FetchUserList.Request) {
+        if request.shouldReload {
+            pageNo = 0
+        } else {
+            pageNo += 1
+        }
         userListService.executeService(page: pageNo, perPage: perPage)
             .subscribe { [weak self] userList in
                 let response = UserList.FetchUserList.Response(
@@ -31,6 +36,11 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
     }
     
     func searchUser(request: UserList.SearchUser.Request) {
+        if request.shouldReload {
+            pageNo = 0
+        } else {
+            pageNo += 1
+        }
         searchUserService.executeService(keyword: request.keyword)
             .subscribe { [weak self] searchResponse in
                 let response = UserList.SearchUser.Response(
