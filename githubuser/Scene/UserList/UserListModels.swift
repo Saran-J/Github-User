@@ -2,7 +2,9 @@ import UIKit
 
 enum UserList {
     enum FetchUserList {
-        struct Request {}
+        struct Request {
+            var shouldReload: Bool
+        }
         struct Response {
             var userListRespnse: [UserItem]
         }
@@ -14,6 +16,7 @@ enum UserList {
     enum SearchUser {
         struct Request {
             var keyword: String
+            var shouldReload: Bool
         }
         struct Response {
             var searchResponse: SearchUserResponse

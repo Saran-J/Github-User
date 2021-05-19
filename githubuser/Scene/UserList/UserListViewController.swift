@@ -63,7 +63,21 @@ class UserListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         bindingSearchTextfield()
-        interactor?.fetchUserList(request: UserList.FetchUserList.Request())
+        fetchUserList(shouldReload: true)
+    }
+    
+    func fetchUserList(shouldReload: Bool) {
+        if shouldReload { userListDataSource = [] }
+        let request = UserList.FetchUserList.Request(shouldReload: shouldReload)
+        interactor?.fetchUserList(request: request)
+    }
+    
+    func searchUserList(keyword: String, shouldReload: Bool) {
+        if shouldReload { userListDataSource = [] }
+        let request = UserList.SearchUser.Request(
+            keyword: keyword,
+            shouldReload: shouldReload)
+        interactor?.searchUser(request: request)
     }
     
     func bindingSearchTextfield() {
@@ -73,8 +87,10 @@ class UserListViewController: UIViewController {
             }
             .distinctUntilChanged()
             .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
-            .bind { keyword in
-                print(keyword)
+            .bind { [weak self] keyword in
+                self?.searchUserList(
+                    keyword: keyword,
+                    shouldReload: true)
             }
             .disposed(by: disposeBag)
     }
