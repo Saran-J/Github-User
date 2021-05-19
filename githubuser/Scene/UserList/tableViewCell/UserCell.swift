@@ -5,6 +5,23 @@ class UserCell: UITableViewCell {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var urlLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
+    
+    var isFavorite = false {
+        didSet {
+            if isFavorite {
+                favoriteButton.setImage(
+                    UIImage(named: "favorite"),
+                    for: .normal)
+            } else {
+                favoriteButton.setImage(
+                    UIImage(named: "unfavorite"),
+                    for: .normal)
+            }
+        }
+    }
+    
+    var onFavorite: (() -> Void) = {}
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,5 +43,10 @@ class UserCell: UITableViewCell {
                 .transition(.fade(1)),
                 .cacheOriginalImage
             ])
+    }
+    
+    @IBAction func onClickFavorite() {
+        isFavorite.toggle()
+        self.onFavorite()
     }
 }

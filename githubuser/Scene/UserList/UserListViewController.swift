@@ -161,7 +161,10 @@ extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
         }
         cell.nameLabel.text = userListDataSource[indexPath.row].name
         cell.urlLabel.text = userListDataSource[indexPath.row].url
-        cell.urlLabel.sizeToFit()
+         
+        cell.onFavorite = {
+            print("favorite")
+        }
         cell.downloadImage(imageUrl: userListDataSource[indexPath.row].avatarImageUrl)
         
         if indexPath.row == userListDataSource.count - 1 && !isLastPage {

@@ -199,6 +199,7 @@
 		0F8BBAC8264ED74D00C6F39B /* githubuser */ = {
 			isa = PBXGroup;
 			children = (
+				0F8C6AD12655795B004CE566 /* Worker */,
 				0F5553472654322E004E7B42 /* Extension */,
 				0F55533326542499004E7B42 /* Scene */,
 				0F7576A22651B2A000ADCA06 /* Service */,
@@ -230,6 +231,13 @@
 				0F8BBAF0264ED74E00C6F39B /* Info.plist */,
 			);
 			path = githubuserUITests;
+			sourceTree = "<group>";
+		};
+		0F8C6AD12655795B004CE566 /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Worker;
 			sourceTree = "<group>";
 		};
 		5CEF977780DB0AB17466F8E1 /* Pods */ = {
