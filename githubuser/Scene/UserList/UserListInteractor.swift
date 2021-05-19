@@ -4,6 +4,7 @@ import RxSwift
 protocol UserListBusinessLogic {
     func fetchUserList(request: UserList.FetchUserList.Request)
     func searchUser(request: UserList.SearchUser.Request)
+    func favoriteUser(request: UserList.FavoriteUser.Request)
 }
 
 protocol UserListDataStore {
@@ -91,5 +92,9 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
             print(error)
         }
         .disposed(by: disposeBag)
+    }
+    
+    func favoriteUser(request: UserList.FavoriteUser.Request) {
+        favoriteWorker.makeFavorite(userId: Int64(request.userId))
     }
 }

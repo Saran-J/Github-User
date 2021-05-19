@@ -35,14 +35,6 @@ enum UserList {
             var userId: Int
             var favorite: Bool
         }
-        struct Response {
-            var userId: Int
-            var isFavorite: Bool
-        }
-        struct ViewModel {
-            var userId: Int
-            var isFavorite: Bool
-        }
     }
 }
 
