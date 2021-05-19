@@ -116,16 +116,25 @@ extension UserListViewController: UserListDisplayLogic {
         if viewModel.shouldReload { userListDataSource = [] }
         userListDataSource.append(contentsOf: viewModel.userListDisplay)
         endRefreshing()
-        tableView.reloadData()
+        self.tableView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
+            if viewModel.shouldReload {
+                self?.tableView.setContentOffset(.zero, animated: true)
+            }
+        }
     }
     
     func displaySearchUser(viewModel: UserList.SearchUser.ViewModel) {
         if viewModel.shouldReload { userListDataSource = [] }
         userListDataSource.append(contentsOf: viewModel.userListDisplay)
         endRefreshing()
-        tableView.reloadData()
+        self.tableView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
+            if viewModel.shouldReload {
+                self?.tableView.setContentOffset(.zero, animated: true)
+            }
+        }
     }
-    
     func endRefreshing() {
         if refreshControl.isRefreshing {
             refreshControl.endRefreshing()
@@ -147,7 +156,7 @@ extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
         cell.downloadImage(imageUrl: userListDataSource[indexPath.row].avatarImageUrl)
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
