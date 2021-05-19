@@ -25,6 +25,7 @@
 		0F8BBAD9264ED74E00C6F39B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F8BBAD7264ED74E00C6F39B /* LaunchScreen.storyboard */; };
 		0F8BBAE4264ED74E00C6F39B /* githubuserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8BBAE3264ED74E00C6F39B /* githubuserTests.swift */; };
 		0F8BBAEF264ED74E00C6F39B /* githubuserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8BBAEE264ED74E00C6F39B /* githubuserUITests.swift */; };
+		0F8C6AD3265579EB004CE566 /* FavoriteWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8C6AD2265579EB004CE566 /* FavoriteWorker.swift */; };
 		0FE6FE0F2652E79A00BBEC85 /* GetUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE6FE0E2652E79A00BBEC85 /* GetUserService.swift */; };
 		0FE6FE142652F5B900BBEC85 /* SearchUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE6FE132652F5B900BBEC85 /* SearchUserService.swift */; };
 		0FE6FE192652F84A00BBEC85 /* GetUserRepoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE6FE182652F84A00BBEC85 /* GetUserRepoService.swift */; };
@@ -75,6 +76,7 @@
 		0F8BBAEA264ED74E00C6F39B /* githubuserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = githubuserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F8BBAEE264ED74E00C6F39B /* githubuserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = githubuserUITests.swift; sourceTree = "<group>"; };
 		0F8BBAF0264ED74E00C6F39B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F8C6AD2265579EB004CE566 /* FavoriteWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteWorker.swift; sourceTree = "<group>"; };
 		0FE6FE0E2652E79A00BBEC85 /* GetUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserService.swift; sourceTree = "<group>"; };
 		0FE6FE132652F5B900BBEC85 /* SearchUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserService.swift; sourceTree = "<group>"; };
 		0FE6FE182652F84A00BBEC85 /* GetUserRepoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserRepoService.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 		0F8C6AD12655795B004CE566 /* Worker */ = {
 			isa = PBXGroup;
 			children = (
+				0F8C6AD2265579EB004CE566 /* FavoriteWorker.swift */,
 			);
 			path = Worker;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				0F55533E265424C4004E7B42 /* UserListModels.swift in Sources */,
 				0FE6FE142652F5B900BBEC85 /* SearchUserService.swift in Sources */,
 				0F55535F265438F5004E7B42 /* UserCell.swift in Sources */,
+				0F8C6AD3265579EB004CE566 /* FavoriteWorker.swift in Sources */,
 				0F55534926543240004E7B42 /* StringExtension.swift in Sources */,
 				0F55533F265424C4004E7B42 /* UserListViewController.swift in Sources */,
 				0FE6FE0F2652E79A00BBEC85 /* GetUserService.swift in Sources */,
