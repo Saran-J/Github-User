@@ -17,22 +17,56 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
     var presenter: UserListPresentationLogic?
     var userListService = GetUserService()
     var searchUserService = SearchUserService()
+    var favoriteWorker = FavoriteWorker()
+    var favoriteUserList: [UserFavoriteModel] = []
+    
     func fetchUserList(request: UserList.FetchUserList.Request) {
         if request.shouldReload {
             pageNo = 0
         } else {
             pageNo += 1
         }
-        userListService.executeService(page: pageNo, perPage: perPage)
-            .subscribe { [weak self] userList in
-                let response = UserList.FetchUserList.Response(
-                    userListRespnse: userList,
-                    shouldReload: request.shouldReload)
-                self?.presenter?.presentUserList(response: response)
-            } onError: { error in
-                print(error)
-            }
+        let userListObservable = userListService.executeService(
+            page: pageNo,
+            perPage: perPage)
+        let favoriteUserObservable = fetchFavoriteUser()
+        Observable.zip(userListObservable, favoriteUserObservable)
+        .map { result in
+            self.updateFavoriteUserList(
+            userList: result.0,
+            favoriteList: result.1)
+        }
+        .subscribe { [weak self] userList in
+            let response = UserList.FetchUserList.Response(
+                userListRespnse: userList,
+                shouldReload: request.shouldReload)
+            self?.presenter?.presentUserList(response: response)
+        } onError: { error in
+            print(error)
+        }
         .disposed(by: disposeBag)
+    }
+    
+    private func fetchFavoriteUser() -> Observable<[UserFavoriteModel]> {
+        return favoriteWorker.fetchFavorite()
+            .do { [weak self] favoriteList in
+                self?.favoriteUserList = favoriteList
+            }
+    }
+    
+    private func updateFavoriteUserList(
+        userList: [UserItem],
+        favoriteList: [UserFavoriteModel]
+    ) -> [UserItem] {
+        let newResult = userList.map { item -> UserItem in
+            let isFavoorite = favoriteList.first { model -> Bool in
+                return model.id == Int64(toInt(item.id))
+            }?.isFavorite ?? false
+            var newItem = item
+            newItem.favorite = isFavoorite
+            return newItem
+        }
+        return newResult
     }
     
     func searchUser(request: UserList.SearchUser.Request) {
@@ -41,15 +75,21 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
         } else {
             pageNo += 1
         }
-        searchUserService.executeService(keyword: request.keyword)
-            .subscribe { [weak self] searchResponse in
-                let response = UserList.SearchUser.Response(
-                    searchResponse: searchResponse,
-                    shouldReload: request.shouldReload)
-                self?.presenter?.presentSearchUser(response: response)
-            } onError: { error in
-                print(error)
-            }
+        let searchUserObservable = searchUserService.executeService(keyword: request.keyword)
+        let favoriteUserObservable = fetchFavoriteUser()
+        Observable.zip(searchUserObservable, favoriteUserObservable)
+        .map { result in self.updateFavoriteUserList(
+            userList: result.0.items,
+            favoriteList: result.1)
+        }
+        .subscribe { [weak self] searchResponse in
+            let response = UserList.SearchUser.Response(
+                searchResponse: searchResponse,
+                shouldReload: request.shouldReload)
+            self?.presenter?.presentSearchUser(response: response)
+        } onError: { error in
+            print(error)
+        }
         .disposed(by: disposeBag)
     }
 }

@@ -27,7 +27,7 @@ class UserListPresenter: UserListPresentationLogic {
     
     func presentSearchUser(response: UserList.SearchUser.Response) {
         var userList: [UserListObject] = []
-        response.searchResponse.items.forEach { user in
+        response.searchResponse.forEach { user in
             let userObject = UserListObject(
                 id: Int64(user.id ?? 0),
                 name: toString(user.login),

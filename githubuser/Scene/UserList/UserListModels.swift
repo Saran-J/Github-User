@@ -21,7 +21,7 @@ enum UserList {
             var shouldReload: Bool
         }
         struct Response {
-            var searchResponse: SearchUserResponse
+            var searchResponse: [UserItem]
             var shouldReload: Bool
         }
         struct ViewModel {
