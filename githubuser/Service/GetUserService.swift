@@ -21,6 +21,7 @@ struct UserItem: Codable {
     var receivedEventsUrl: String?
     var type: String?
     var siteAdmin: Bool?
+    var score: Int?
     
     enum CodingKeys: String, CodingKey {
         case login = "login"
@@ -41,6 +42,7 @@ struct UserItem: Codable {
         case receivedEventsUrl = "received_events_url"
         case type = "type"
         case siteAdmin = "site_admin"
+        case score = "score"
     }
 }
 
