@@ -11,6 +11,7 @@ class RepoHeaderView: UIView {
     func setupData(title: String, url: String, image: String) {
         titleLabel.text = title
         urlLabel.text = url
+        urlLabel.sizeToFit()
         
         let processor = DownsamplingImageProcessor(size: avatarImageView.bounds.size)
         let url = URL(string: image)
