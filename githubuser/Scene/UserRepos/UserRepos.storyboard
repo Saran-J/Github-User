@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--User Repos View Controller-->
         <scene sceneID="4jQ-um-7MR">
             <objects>
-                <viewController id="Lcz-GM-1oc" sceneMemberID="viewController">
+                <viewController id="Lcz-GM-1oc" customClass="UserReposViewController" customModule="githubuser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VZC-7H-2tI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="111" id="Kpw-Em-LBm" customClass="RepoCell" customModule="githubuser" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RepoCell" rowHeight="111" id="Kpw-Em-LBm" customClass="RepoCell" customModule="githubuser" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="111"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kpw-Em-LBm" id="Nvh-qo-u5Q">
@@ -73,6 +73,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Lcz-GM-1oc" id="Y9G-Qo-qlS"/>
+                                    <outlet property="delegate" destination="Lcz-GM-1oc" id="iUb-C6-bxi"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Uco-H8-iFh"/>
@@ -85,6 +89,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tOJ-dD-DnB"/>
+                    <connections>
+                        <outlet property="headerView" destination="1Zn-fz-ncS" id="OWw-NL-LWc"/>
+                        <outlet property="tableView" destination="uS5-tQ-eLX" id="iVh-qB-ct8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4gz-uh-EoC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="1Zn-fz-ncS" customClass="RepoHeaderView" customModule="githubuser" customModuleProvider="target">
