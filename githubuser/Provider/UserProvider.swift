@@ -38,21 +38,21 @@ extension UserProvider: TargetType {
         switch self {
         case let .fetchUser(lastUserId, perPage):
             return .requestParameters(
-                parameters: ["since": lastUserId, "perPage": perPage],
+                parameters: ["since": lastUserId, "per_page": perPage],
                 encoding: URLEncoding.queryString)
         case let .searchUser(keyword, page, perPage):
             return .requestParameters(
                 parameters: [
                     "q": keyword,
                     "page": page,
-                    "perPage": perPage
+                    "per_page": perPage
                 ],
                 encoding: URLEncoding.queryString)
         case let .fetchUserRepo(_, page, perPage):
             return .requestParameters(
                 parameters: [
                     "page": page,
-                    "perPage": perPage
+                    "per_page": perPage
                 ],
                 encoding: URLEncoding.queryString)
         }
