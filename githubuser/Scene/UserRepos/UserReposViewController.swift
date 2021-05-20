@@ -56,6 +56,12 @@ class UserReposViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        interactor?.fetchUserRepository(
+            request: UserRepos.FetchUserRepository.Request())
+    }
 }
 
 extension UserReposViewController: UserReposDisplayLogic {
@@ -77,7 +83,7 @@ extension UserReposViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: "repoCell") as? RepoCell,
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RepoCell") as? RepoCell,
             let repoObject = userRepositoryData?.repository[indexPath.row]
         else {
             return UITableViewCell()
@@ -94,5 +100,9 @@ extension UserReposViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return RepoHeaderView.headerHeight
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return RepoCell.rowHeight
     }
 }
