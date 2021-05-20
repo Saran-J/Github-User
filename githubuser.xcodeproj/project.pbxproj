@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F0F26ED2656ABA700B114B4 /* UserRepos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F0F26EC2656ABA700B114B4 /* UserRepos.storyboard */; };
+		0F0F26F32656ADE700B114B4 /* RepoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F26F22656ADE700B114B4 /* RepoCell.swift */; };
+		0F0F26FB2656BA3C00B114B4 /* RepoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F26FA2656BA3C00B114B4 /* RepoHeaderView.swift */; };
 		0F55533B265424C4004E7B42 /* UserListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F555335265424C4004E7B42 /* UserListPresenter.swift */; };
 		0F55533D265424C4004E7B42 /* UserListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F555337265424C4004E7B42 /* UserListRouter.swift */; };
 		0F55533E265424C4004E7B42 /* UserListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F555338265424C4004E7B42 /* UserListModels.swift */; };
@@ -58,6 +61,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F0F26EC2656ABA700B114B4 /* UserRepos.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserRepos.storyboard; sourceTree = "<group>"; };
+		0F0F26F22656ADE700B114B4 /* RepoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoCell.swift; sourceTree = "<group>"; };
+		0F0F26FA2656BA3C00B114B4 /* RepoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoHeaderView.swift; sourceTree = "<group>"; };
 		0F555335265424C4004E7B42 /* UserListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListPresenter.swift; sourceTree = "<group>"; };
 		0F555337265424C4004E7B42 /* UserListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListRouter.swift; sourceTree = "<group>"; };
 		0F555338265424C4004E7B42 /* UserListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListModels.swift; sourceTree = "<group>"; };
@@ -131,6 +137,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F0F26F12656ADB700B114B4 /* tableviewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0F0F26F22656ADE700B114B4 /* RepoCell.swift */,
+				0F0F26FA2656BA3C00B114B4 /* RepoHeaderView.swift */,
+			);
+			path = tableviewCell;
+			sourceTree = "<group>";
+		};
 		0F55533326542499004E7B42 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,12 +274,14 @@
 		0F8C6ADA26560DFA004CE566 /* UserRepos */ = {
 			isa = PBXGroup;
 			children = (
+				0F0F26F12656ADB700B114B4 /* tableviewCell */,
 				0F8C6ADB26560E16004CE566 /* UserReposPresenter.swift */,
 				0F8C6ADC26560E16004CE566 /* UserReposWorker.swift */,
 				0F8C6ADD26560E16004CE566 /* UserReposRouter.swift */,
 				0F8C6ADE26560E16004CE566 /* UserReposModels.swift */,
 				0F8C6ADF26560E16004CE566 /* UserReposViewController.swift */,
 				0F8C6AE026560E16004CE566 /* UserReposInteractor.swift */,
+				0F0F26EC2656ABA700B114B4 /* UserRepos.storyboard */,
 			);
 			path = UserRepos;
 			sourceTree = "<group>";
@@ -401,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F8BBAD9264ED74E00C6F39B /* LaunchScreen.storyboard in Resources */,
+				0F0F26ED2656ABA700B114B4 /* UserRepos.storyboard in Resources */,
 				0F555351265434FE004E7B42 /* UserList.storyboard in Resources */,
 				0F8BBAD6264ED74E00C6F39B /* Assets.xcassets in Resources */,
 				0F8BBAD1264ED74D00C6F39B /* Main.storyboard in Resources */,
@@ -537,6 +555,7 @@
 				0F555340265424C4004E7B42 /* UserListInteractor.swift in Sources */,
 				0F8C6AE426560E16004CE566 /* UserReposModels.swift in Sources */,
 				0FE6FE192652F84A00BBEC85 /* GetUserRepoService.swift in Sources */,
+				0F0F26F32656ADE700B114B4 /* RepoCell.swift in Sources */,
 				0F7576942651AAAD00ADCA06 /* UserProvider.swift in Sources */,
 				0F8C6AE526560E16004CE566 /* UserReposViewController.swift in Sources */,
 				0F7576A42651B2AE00ADCA06 /* BaseService.swift in Sources */,
@@ -547,6 +566,7 @@
 				0F8C6AE326560E16004CE566 /* UserReposRouter.swift in Sources */,
 				0F8C6AE226560E16004CE566 /* UserReposWorker.swift in Sources */,
 				0F8C6AD3265579EB004CE566 /* FavoriteWorker.swift in Sources */,
+				0F0F26FB2656BA3C00B114B4 /* RepoHeaderView.swift in Sources */,
 				0F55534926543240004E7B42 /* StringExtension.swift in Sources */,
 				0F55533F265424C4004E7B42 /* UserListViewController.swift in Sources */,
 				0FE6FE0F2652E79A00BBEC85 /* GetUserService.swift in Sources */,
