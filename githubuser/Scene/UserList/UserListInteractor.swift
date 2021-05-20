@@ -12,6 +12,7 @@ protocol UserListDataStore {
 
 class UserListInteractor: UserListBusinessLogic, UserListDataStore {
     var perPage: Int = 10
+    var page: Int = 1
     var lastUserId: Int = 0
     var disposeBag = DisposeBag()
     
@@ -39,7 +40,8 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
             self?.lastUserId = userList.last?.id ?? 0
             let response = UserList.FetchUserList.Response(
                 userListRespnse: userList,
-                shouldReload: request.shouldReload)
+                shouldReload: request.shouldReload,
+                isLastPage: userList.count < toInt(self?.perPage))
             self?.presenter?.presentUserList(response: response)
         } onError: { error in
             print(error)
@@ -71,20 +73,29 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
     
     func searchUser(request: UserList.SearchUser.Request) {
         if request.shouldReload {
-            lastUserId = 0
+            page = 1
+        } else {
+            page += 1
         }
-        let searchUserObservable = searchUserService.executeService(keyword: request.keyword)
+        let searchUserObservable = searchUserService.executeService(
+            keyword: request.keyword,
+            page: page,
+            perPage: perPage
+        )
         let favoriteUserObservable = fetchFavoriteUser()
         Observable.zip(searchUserObservable, favoriteUserObservable)
-        .map { result in self.updateFavoriteUserList(
-            userList: result.0.items,
-            favoriteList: result.1)
+        .map { [weak self] result -> ([UserItem], Bool) in
+            let userList = self?.updateFavoriteUserList(
+                userList: result.0.items,
+                favoriteList: result.1) ?? []
+            let isLastPage = result.0.totalCount < toInt(self?.perPage)
+            return (userList, isLastPage)
         }
         .subscribe { [weak self] searchResponse in
-            self?.lastUserId = searchResponse.last?.id ?? 0
             let response = UserList.SearchUser.Response(
-                searchResponse: searchResponse,
-                shouldReload: request.shouldReload)
+                searchResponse: searchResponse.0,
+                shouldReload: request.shouldReload,
+                isLastPage: searchResponse.1)
             self?.presenter?.presentSearchUser(response: response)
         } onError: { error in
             print(error)

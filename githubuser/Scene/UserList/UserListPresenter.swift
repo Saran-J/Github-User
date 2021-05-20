@@ -21,7 +21,8 @@ class UserListPresenter: UserListPresentationLogic {
         }
         let viewModel = UserList.FetchUserList.ViewModel(
             userListDisplay: userList,
-            shouldReload: response.shouldReload)
+            shouldReload: response.shouldReload,
+            isLastPage: response.isLastPage)
         viewController?.displayUserList(viewModel: viewModel)
     }
     
@@ -38,7 +39,8 @@ class UserListPresenter: UserListPresentationLogic {
         }
         let viewModel = UserList.SearchUser.ViewModel(
             userListDisplay: userList,
-            shouldReload: response.shouldReload)
+            shouldReload: response.shouldReload,
+            isLastPage: response.isLastPage)
         viewController?.displaySearchUser(viewModel: viewModel)
     }
 }

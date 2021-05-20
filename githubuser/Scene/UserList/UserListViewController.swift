@@ -114,11 +114,11 @@ extension UserListViewController: UserListDisplayLogic {
         if viewModel.shouldReload { userListDataSource = [] }
         userListDataSource.append(contentsOf: viewModel.userListDisplay)
         endRefreshing()
+        self.isLastPage = viewModel.isLastPage
         self.tableView.reloadData()
         DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
             if viewModel.shouldReload {
                 self?.tableView.setContentOffset(.zero, animated: true)
-                self?.isLastPage = false
             }
         }
     }
@@ -127,11 +127,11 @@ extension UserListViewController: UserListDisplayLogic {
         if viewModel.shouldReload { userListDataSource = [] }
         userListDataSource.append(contentsOf: viewModel.userListDisplay)
         endRefreshing()
+        self.isLastPage = viewModel.isLastPage
         self.tableView.reloadData()
         DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
             if viewModel.shouldReload {
                 self?.tableView.setContentOffset(.zero, animated: true)
-                self?.isLastPage = false
             }
         }
     }

@@ -8,10 +8,12 @@ enum UserList {
         struct Response {
             var userListRespnse: [UserItem]
             var shouldReload: Bool
+            var isLastPage: Bool
         }
         struct ViewModel {
             var userListDisplay: [UserListObject]
             var shouldReload: Bool
+            var isLastPage: Bool
         }
     }
     
@@ -23,10 +25,12 @@ enum UserList {
         struct Response {
             var searchResponse: [UserItem]
             var shouldReload: Bool
+            var isLastPage: Bool
         }
         struct ViewModel {
             var userListDisplay: [UserListObject]
             var shouldReload: Bool
+            var isLastPage: Bool
         }
     }
     
