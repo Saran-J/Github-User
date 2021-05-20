@@ -27,8 +27,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GHG-P3-rcG">
                                                 <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="k5X-ni-9mp">
-                                                        <rect key="frame" x="12" y="13" width="24" height="22"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="k5X-ni-9mp">
+                                                        <rect key="frame" x="12" y="12" width="24" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="C9V-3g-f6V"/>
                                                             <constraint firstAttribute="width" constant="24" id="Uqk-NC-ajK"/>
@@ -196,7 +196,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="search" width="200" height="199.33332824707031"/>
         <image name="unfavorite" width="250" height="250"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
