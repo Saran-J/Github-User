@@ -11,7 +11,7 @@ protocol UserReposDataStore {
 
 class UserReposInteractor: UserReposBusinessLogic, UserReposDataStore {
     var perPage: Int = 10
-    var page: Int = 0
+    var page: Int = 1
     var presenter: UserReposPresentationLogic?
     var repositoryService = GetUserRepoService()
     var userItem: UserItem?
