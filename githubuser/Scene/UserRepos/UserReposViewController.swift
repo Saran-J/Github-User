@@ -1,9 +1,10 @@
 import UIKit
 
 protocol UserReposDisplayLogic: class {
+    func displayUserRepository(viewModel: UserRepos.FetchUserRepository.ViewModel)
 }
 
-class UserReposViewController: UIViewController, UserReposDisplayLogic {
+class UserReposViewController: UIViewController {
     var interactor: UserReposBusinessLogic?
     var router: (NSObjectProtocol & UserReposRoutingLogic & UserReposDataPassing)?
     
@@ -45,5 +46,10 @@ class UserReposViewController: UIViewController, UserReposDisplayLogic {
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+}
+
+extension UserReposViewController: UserReposDisplayLogic {
+    func displayUserRepository(viewModel: UserRepos.FetchUserRepository.ViewModel) {
     }
 }
