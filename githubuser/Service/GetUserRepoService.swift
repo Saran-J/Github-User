@@ -153,8 +153,14 @@ struct GetUserRepoResponse: Codable {
     }
 }
 
-class GetUserRepoService: BaseService<UserProvider, GetUserRepoResponse> {
-    func executeService(user: String) -> Observable<GetUserRepoResponse> {
-        return super.callService(target: UserProvider.fetchUserRepo(user: user))
+class GetUserRepoService: BaseService<UserProvider, [GetUserRepoResponse]> {
+    func executeService(user: String, lastRepoId: Int, perPage: Int) -> Observable<[GetUserRepoResponse]> {
+        return super.callService(
+            target: UserProvider.fetchUserRepo(
+                user: user,
+                lastRepoId: lastRepoId,
+                perPage: perPage
+            )
+        )
     }
 }

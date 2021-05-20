@@ -1,14 +1,45 @@
 import UIKit
+import RxSwift
 
 protocol UserReposBusinessLogic {
     func fetchUserRepository(request: UserRepos.FetchUserRepository.Request)
 }
 
 protocol UserReposDataStore {
+    var userItem: UserItem? { get set }
 }
 
 class UserReposInteractor: UserReposBusinessLogic, UserReposDataStore {
+    var perPage: Int = 10
+    var lastRepoId: Int = 0
     var presenter: UserReposPresentationLogic?
+    var repositoryService = GetUserRepoService()
+    var userItem: UserItem?
+    var disposeBag = DisposeBag()
     func fetchUserRepository(request: UserRepos.FetchUserRepository.Request) {
+        repositoryService.executeService(
+            user: request.user,
+            lastRepoId: lastRepoId,
+            perPage: perPage
+        )
+        .subscribe { [weak self] response in
+            self?.prepareResponseForPresentUserRepository(response)
+        } onError: { error in
+            print(error)
+        }
+        .disposed(by: disposeBag)
+    }
+    
+    func prepareResponseForPresentUserRepository(_ resp: [GetUserRepoResponse]) {
+        guard let userItem = self.userItem else {
+            return
+        }
+        lastRepoId = resp.last?.id ?? 0
+        let response = UserRepos.FetchUserRepository.Response(
+            userRepository: resp,
+            userDetail: userItem,
+            isLastPage: resp.count < self.perPage
+        )
+        presenter?.presentUserRepository(response: response)
     }
 }
