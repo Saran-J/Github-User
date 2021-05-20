@@ -1,14 +1,19 @@
 import UIKit
 enum UserRepos {
     enum FetchUserRepository {
-        struct Request {}
+        struct Request {
+            var shouldReload: Bool
+        }
         struct Response {
             var userRepository: [GetUserRepoResponse]
             var userDetail: UserItem
             var isLastPage: Bool
+            var shouldReload: Bool
         }
         struct ViewModel {
             var repositoryObject: RepositoryDetail
+            var isLastPage: Bool
+            var shouldReload: Bool
         }
     }
 }

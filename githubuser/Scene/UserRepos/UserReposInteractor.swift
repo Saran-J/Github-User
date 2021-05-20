@@ -17,27 +17,39 @@ class UserReposInteractor: UserReposBusinessLogic, UserReposDataStore {
     var userItem: UserItem?
     var disposeBag = DisposeBag()
     func fetchUserRepository(request: UserRepos.FetchUserRepository.Request) {
+        if request.shouldReload {
+            page = 1
+        } else {
+            page += 1
+        }
         repositoryService.executeService(
             user: toString(userItem?.login),
             page: page,
             perPage: perPage
         )
         .subscribe { [weak self] response in
-            self?.prepareResponseForPresentUserRepository(response)
+            self?.prepareResponseForPresentUserRepository(
+                response,
+                shouldReload: request.shouldReload
+            )
         } onError: { error in
             print(error)
         }
         .disposed(by: disposeBag)
     }
     
-    func prepareResponseForPresentUserRepository(_ resp: [GetUserRepoResponse]) {
+    func prepareResponseForPresentUserRepository(
+        _ resp: [GetUserRepoResponse],
+        shouldReload: Bool
+        ) {
         guard let userItem = self.userItem else {
             return
         }
         let response = UserRepos.FetchUserRepository.Response(
             userRepository: resp,
             userDetail: userItem,
-            isLastPage: resp.count < self.perPage
+            isLastPage: resp.count < self.perPage,
+            shouldReload: shouldReload
         )
         presenter?.presentUserRepository(response: response)
     }

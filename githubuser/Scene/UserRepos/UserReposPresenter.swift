@@ -22,7 +22,10 @@ class UserReposPresenter: UserReposPresentationLogic {
             avatarImageUrl: toString(response.userDetail.avatarUrl),
             isFavorite: toBool(response.userDetail.favorite),
             repository: repositoryList)
-        let viewModel = UserRepos.FetchUserRepository.ViewModel(repositoryObject: detail)
+        let viewModel = UserRepos.FetchUserRepository.ViewModel(
+            repositoryObject: detail,
+            isLastPage: response.isLastPage,
+            shouldReload: response.shouldReload)
         viewController?.displayUserRepository(viewModel: viewModel)
     }
 }

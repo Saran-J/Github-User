@@ -1,4 +1,6 @@
 import UIKit
+import RxSwift
+import RxCocoa
 
 protocol UserReposDisplayLogic: class {
     func displayUserRepository(viewModel: UserRepos.FetchUserRepository.ViewModel)
@@ -7,10 +9,14 @@ protocol UserReposDisplayLogic: class {
 class UserReposViewController: UIViewController {
     var interactor: UserReposBusinessLogic?
     var router: (NSObjectProtocol & UserReposRoutingLogic & UserReposDataPassing)?
-    var userRepositoryData: RepositoryDetail?
+    var userRepositoryData: [RepositoryObject] = []
+    var disposeBag = DisposeBag()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var headerView: RepoHeaderView!
+    
+    var refreshControl = UIRefreshControl()
+    var isLastPage = false
     
     static func initFromStoryboard() -> UserReposViewController? {
         return UIStoryboard(name: "UserRepos", bundle: nil)
@@ -55,42 +61,71 @@ class UserReposViewController: UIViewController {
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
+        fetchRepo(shouldReload: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    
+    func setupTableView() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Refresh")
+        refreshControl.rx.controlEvent(.valueChanged)
+            .bind { [weak self] _ in
+                self?.fetchRepo(shouldReload: true)
+            }
+        .disposed(by: disposeBag)
+        tableView.addSubview(refreshControl)
+    }
+    
+    func fetchRepo(shouldReload: Bool) {
         interactor?.fetchUserRepository(
-            request: UserRepos.FetchUserRepository.Request())
+            request: UserRepos.FetchUserRepository.Request(shouldReload: shouldReload))
     }
 }
 
 extension UserReposViewController: UserReposDisplayLogic {
     func displayUserRepository(viewModel: UserRepos.FetchUserRepository.ViewModel) {
-        userRepositoryData = viewModel.repositoryObject
+        if viewModel.shouldReload { userRepositoryData = [] }
+        userRepositoryData.append(contentsOf: viewModel.repositoryObject.repository)
+        endRefreshing()
+        isLastPage = viewModel.isLastPage
         headerView.setupData(
-            title: toString(userRepositoryData?.name),
-            url: toString(userRepositoryData?.url),
-            image: toString(userRepositoryData?.avatarImageUrl)
+            title: toString(viewModel.repositoryObject.name),
+            url: toString(viewModel.repositoryObject.url),
+            image: toString(viewModel.repositoryObject.avatarImageUrl)
         )
         tableView.reloadData()
+    }
+    
+    func endRefreshing() {
+        if refreshControl.isRefreshing {
+            refreshControl.endRefreshing()
+        }
     }
 }
 
 extension UserReposViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return toInt(userRepositoryData?.repository.count)
+        return userRepositoryData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RepoCell") as? RepoCell,
-            let repoObject = userRepositoryData?.repository[indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RepoCell") as? RepoCell
         else {
             return UITableViewCell()
         }
+        let repoObject = userRepositoryData[indexPath.row]
         cell.titleLabel.text = repoObject.title
         cell.detailLabel.text = repoObject.detail
         cell.languageLabel.text = repoObject.language
+        
+        if indexPath.row == userRepositoryData.count - 1 && !isLastPage {
+            fetchRepo(shouldReload: false)
+        }
+        
         return cell
     }
     
