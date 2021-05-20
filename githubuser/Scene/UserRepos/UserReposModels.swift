@@ -1,9 +1,7 @@
 import UIKit
 enum UserRepos {
     enum FetchUserRepository {
-        struct Request {
-            var user: String
-        }
+        struct Request {}
         struct Response {
             var userRepository: [GetUserRepoResponse]
             var userDetail: UserItem

@@ -70,7 +70,7 @@ struct GetUserRepoResponse: Codable {
     var archived: Bool?
     var disabled: Bool?
     var openIssuesCount: Int?
-    var license: String?
+    var license: License?
     var forks: Int?
     var openIssues: Int?
     var watchers: Int?
@@ -153,12 +153,28 @@ struct GetUserRepoResponse: Codable {
     }
 }
 
+struct License: Codable {
+    var key: String?
+    var name: String?
+    var spdxId: String?
+    var url: String?
+    var nodeId: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case key = "key"
+        case name = "name"
+        case spdxId = "spdx_id"
+        case url = "url"
+        case nodeId = "node_id"
+    }
+}
+
 class GetUserRepoService: BaseService<UserProvider, [GetUserRepoResponse]> {
-    func executeService(user: String, lastRepoId: Int, perPage: Int) -> Observable<[GetUserRepoResponse]> {
+    func executeService(user: String, page: Int, perPage: Int) -> Observable<[GetUserRepoResponse]> {
         return super.callService(
             target: UserProvider.fetchUserRepo(
                 user: user,
-                lastRepoId: lastRepoId,
+                page: page,
                 perPage: perPage
             )
         )

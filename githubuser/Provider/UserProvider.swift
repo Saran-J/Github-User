@@ -4,7 +4,7 @@ import Moya
 enum UserProvider {
     case fetchUser(lastUserId: Int, perPage: Int)
     case searchUser(keyword: String, page: Int, perPage: Int)
-    case fetchUserRepo(user: String, lastRepoId: Int, perPage: Int)
+    case fetchUserRepo(user: String, page: Int, perPage: Int)
 }
 
 extension UserProvider: TargetType {
@@ -48,10 +48,10 @@ extension UserProvider: TargetType {
                     "perPage": perPage
                 ],
                 encoding: URLEncoding.queryString)
-        case let .fetchUserRepo(_, lastRepoId, perPage):
+        case let .fetchUserRepo(_, page, perPage):
             return .requestParameters(
                 parameters: [
-                    "since": lastRepoId,
+                    "page": page,
                     "perPage": perPage
                 ],
                 encoding: URLEncoding.queryString)

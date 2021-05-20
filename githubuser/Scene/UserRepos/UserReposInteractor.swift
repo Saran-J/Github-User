@@ -11,15 +11,15 @@ protocol UserReposDataStore {
 
 class UserReposInteractor: UserReposBusinessLogic, UserReposDataStore {
     var perPage: Int = 10
-    var lastRepoId: Int = 0
+    var page: Int = 0
     var presenter: UserReposPresentationLogic?
     var repositoryService = GetUserRepoService()
     var userItem: UserItem?
     var disposeBag = DisposeBag()
     func fetchUserRepository(request: UserRepos.FetchUserRepository.Request) {
         repositoryService.executeService(
-            user: request.user,
-            lastRepoId: lastRepoId,
+            user: toString(userItem?.login),
+            page: page,
             perPage: perPage
         )
         .subscribe { [weak self] response in
@@ -34,7 +34,6 @@ class UserReposInteractor: UserReposBusinessLogic, UserReposDataStore {
         guard let userItem = self.userItem else {
             return
         }
-        lastRepoId = resp.last?.id ?? 0
         let response = UserRepos.FetchUserRepository.Response(
             userRepository: resp,
             userDetail: userItem,
