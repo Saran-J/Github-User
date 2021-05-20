@@ -77,6 +77,7 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
     
     func searchUser(request: UserList.SearchUser.Request) {
         if request.shouldReload {
+            self.userList = []
             page = 1
         } else {
             page += 1
@@ -96,6 +97,7 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
             return (userList, isLastPage)
         }
         .subscribe { [weak self] searchResponse in
+            self?.userList.append(contentsOf: searchResponse.0)
             let response = UserList.SearchUser.Response(
                 searchResponse: searchResponse.0,
                 shouldReload: request.shouldReload,
