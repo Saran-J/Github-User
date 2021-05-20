@@ -12,6 +12,11 @@ class UserReposViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var headerView: RepoHeaderView!
     
+    static func initFromStoryboard() -> UserReposViewController? {
+        return UIStoryboard(name: "UserRepos", bundle: nil)
+            .instantiateInitialViewController() as? UserReposViewController
+    }
+    
     // MARK: Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)

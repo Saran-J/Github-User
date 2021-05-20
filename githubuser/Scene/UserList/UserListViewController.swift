@@ -180,6 +180,11 @@ extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
         return 120
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let id = Int(userListDataSource[indexPath.row].id)
+        router?.routeToUserRepositoryList(id: id)
+    }
+    
     func updateFavorite(userId: Int64?, favorite: Bool) {
         if let userId = userId {
             let request = UserList.FavoriteUser.Request(

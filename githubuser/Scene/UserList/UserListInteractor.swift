@@ -8,6 +8,7 @@ protocol UserListBusinessLogic {
 }
 
 protocol UserListDataStore {
+    var userList: [UserItem] { get set }
 }
 
 class UserListInteractor: UserListBusinessLogic, UserListDataStore {
@@ -21,10 +22,12 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
     var searchUserService = SearchUserService()
     var favoriteWorker = FavoriteWorker()
     var favoriteUserList: [UserFavoriteModel] = []
+    var userList: [UserItem] = []
     
     func fetchUserList(request: UserList.FetchUserList.Request) {
         if request.shouldReload {
             lastUserId = 0
+            self.userList = []
         }
         let userListObservable = userListService.executeService(
             lastUserId: lastUserId,
@@ -38,6 +41,7 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
         }
         .subscribe { [weak self] userList in
             self?.lastUserId = userList.last?.id ?? 0
+            self?.userList.append(contentsOf: userList)
             let response = UserList.FetchUserList.Response(
                 userListRespnse: userList,
                 shouldReload: request.shouldReload,
