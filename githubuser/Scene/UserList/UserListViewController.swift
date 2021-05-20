@@ -62,13 +62,13 @@ class UserListViewController: UIViewController {
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        bindingSearchTextfield()
+        setupTableView()
+        fetchUserList(shouldReload: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        bindingSearchTextfield()
-        setupTableView()
-        fetchUserList(shouldReload: true)
     }
     
     func fetchUserList(shouldReload: Bool) {
@@ -182,6 +182,7 @@ extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let id = Int(userListDataSource[indexPath.row].id)
+        print(id)
         router?.routeToUserRepositoryList(id: id)
     }
     
