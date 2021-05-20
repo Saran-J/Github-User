@@ -47,8 +47,9 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
                 shouldReload: request.shouldReload,
                 isLastPage: userList.count < toInt(self?.perPage))
             self?.presenter?.presentUserList(response: response)
-        } onError: { error in
-            print(error)
+        } onError: { [weak self] error in
+            let serviceError = (error as? ServiceError) ?? ServiceError(.unknownError)
+            self?.presenter?.presentError(error: serviceError)
         }
         .disposed(by: disposeBag)
     }

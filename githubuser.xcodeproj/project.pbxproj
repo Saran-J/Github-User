@@ -20,6 +20,7 @@
 		0F55535F265438F5004E7B42 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F55535E265438F5004E7B42 /* UserCell.swift */; };
 		0F7576942651AAAD00ADCA06 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576932651AAAD00ADCA06 /* UserProvider.swift */; };
 		0F7576A42651B2AE00ADCA06 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576A32651B2AE00ADCA06 /* BaseService.swift */; };
+		0F7D85972656E44F00543EAA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7D85962656E44F00543EAA /* BaseViewController.swift */; };
 		0F8BBACA264ED74D00C6F39B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8BBAC9264ED74D00C6F39B /* AppDelegate.swift */; };
 		0F8BBACE264ED74D00C6F39B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8BBACD264ED74D00C6F39B /* ViewController.swift */; };
 		0F8BBAD1264ED74D00C6F39B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F8BBACF264ED74D00C6F39B /* Main.storyboard */; };
@@ -73,6 +74,7 @@
 		0F55535E265438F5004E7B42 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		0F7576932651AAAD00ADCA06 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
 		0F7576A32651B2AE00ADCA06 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
+		0F7D85962656E44F00543EAA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		0F8BBAC6264ED74D00C6F39B /* githubuser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = githubuser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F8BBAC9264ED74D00C6F39B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F8BBACD264ED74D00C6F39B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			children = (
 				0F8C6ADA26560DFA004CE566 /* UserRepos */,
 				0F5553342654249F004E7B42 /* UserList */,
+				0F7D85962656E44F00543EAA /* BaseViewController.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				0F55533B265424C4004E7B42 /* UserListPresenter.swift in Sources */,
 				0F555340265424C4004E7B42 /* UserListInteractor.swift in Sources */,
 				0F8C6AE426560E16004CE566 /* UserReposModels.swift in Sources */,
+				0F7D85972656E44F00543EAA /* BaseViewController.swift in Sources */,
 				0FE6FE192652F84A00BBEC85 /* GetUserRepoService.swift in Sources */,
 				0F0F26F32656ADE700B114B4 /* RepoCell.swift in Sources */,
 				0F7576942651AAAD00ADCA06 /* UserProvider.swift in Sources */,

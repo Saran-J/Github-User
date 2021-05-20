@@ -32,8 +32,9 @@ class UserReposInteractor: UserReposBusinessLogic, UserReposDataStore {
                 response,
                 shouldReload: request.shouldReload
             )
-        } onError: { error in
-            print(error)
+        } onError: { [weak self] error in
+            let serviceError = (error as? ServiceError) ?? ServiceError(.unknownError)
+            self?.presenter?.presentError(error: serviceError)
         }
         .disposed(by: disposeBag)
     }

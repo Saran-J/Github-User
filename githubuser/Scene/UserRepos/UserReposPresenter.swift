@@ -2,6 +2,7 @@ import UIKit
 
 protocol UserReposPresentationLogic {
     func presentUserRepository(response: UserRepos.FetchUserRepository.Response)
+    func presentError(error: ServiceError)
 }
 
 class UserReposPresenter: UserReposPresentationLogic {
@@ -27,5 +28,12 @@ class UserReposPresenter: UserReposPresentationLogic {
             isLastPage: response.isLastPage,
             shouldReload: response.shouldReload)
         viewController?.displayUserRepository(viewModel: viewModel)
+    }
+    
+    func presentError(error: ServiceError) {
+        viewController?.displayError(
+            title: error.getTitle(),
+            message: error.getMessage()
+        )
     }
 }

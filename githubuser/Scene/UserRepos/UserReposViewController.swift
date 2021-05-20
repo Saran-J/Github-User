@@ -4,9 +4,10 @@ import RxCocoa
 
 protocol UserReposDisplayLogic: class {
     func displayUserRepository(viewModel: UserRepos.FetchUserRepository.ViewModel)
+    func displayError(title: String, message: String)
 }
 
-class UserReposViewController: UIViewController {
+class UserReposViewController: BaseViewController {
     var interactor: UserReposBusinessLogic?
     var router: (NSObjectProtocol & UserReposRoutingLogic & UserReposDataPassing)?
     var userRepositoryData: [RepositoryObject] = []
@@ -78,11 +79,6 @@ class UserReposViewController: UIViewController {
         .disposed(by: disposeBag)
         tableView.addSubview(refreshControl)
     }
-    
-    func fetchRepo(shouldReload: Bool) {
-        interactor?.fetchUserRepository(
-            request: UserRepos.FetchUserRepository.Request(shouldReload: shouldReload))
-    }
 }
 
 extension UserReposViewController: UserReposDisplayLogic {
@@ -99,10 +95,19 @@ extension UserReposViewController: UserReposDisplayLogic {
         tableView.reloadData()
     }
     
+    func displayError(title: String, message: String) {
+        displayMessage(title: title, message: message)
+    }
+    
     func endRefreshing() {
         if refreshControl.isRefreshing {
             refreshControl.endRefreshing()
         }
+    }
+    
+    func fetchRepo(shouldReload: Bool) {
+        interactor?.fetchUserRepository(
+            request: UserRepos.FetchUserRepository.Request(shouldReload: shouldReload))
     }
 }
 

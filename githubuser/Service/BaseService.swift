@@ -44,6 +44,14 @@ public struct ServiceError: Error {
     init(_ type: ErrorType) {
         self.type = type
     }
+    
+    func getTitle() -> String {
+        return "Sorry"
+    }
+    
+    func getMessage() -> String {
+        return type.rawValue
+    }
 }
 
 public enum ErrorType: String {
@@ -53,4 +61,5 @@ public enum ErrorType: String {
     case fetchDBError = "Can't fetch data from SQLite"
     case saveDBError = "Can't save data"
     case downloadImageError = "Can't download image data"
+    case unknownError = "Unknow Error"
 }

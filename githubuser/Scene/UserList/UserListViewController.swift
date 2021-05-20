@@ -5,9 +5,10 @@ import RxCocoa
 protocol UserListDisplayLogic: class {
     func displayUserList(viewModel: UserList.FetchUserList.ViewModel)
     func displaySearchUser(viewModel: UserList.SearchUser.ViewModel)
+    func displayError(title: String, message: String)
 }
 
-class UserListViewController: UIViewController {
+class UserListViewController: BaseViewController {
     var interactor: UserListBusinessLogic?
     var router: (NSObjectProtocol & UserListRoutingLogic & UserListDataPassing)?
     var userListDataSource: [UserListObject] = []
@@ -134,6 +135,10 @@ extension UserListViewController: UserListDisplayLogic {
                 self?.tableView.setContentOffset(.zero, animated: true)
             }
         }
+    }
+    
+    func displayError(title: String, message: String) {
+        displayMessage(title: title, message: message)
     }
     
     func endRefreshing() {

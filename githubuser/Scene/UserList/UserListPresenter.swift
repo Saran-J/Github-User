@@ -3,6 +3,7 @@ import UIKit
 protocol UserListPresentationLogic {
     func presentUserList(response: UserList.FetchUserList.Response)
     func presentSearchUser(response: UserList.SearchUser.Response)
+    func presentError(error: ServiceError)
 }
 
 class UserListPresenter: UserListPresentationLogic {
@@ -42,5 +43,12 @@ class UserListPresenter: UserListPresentationLogic {
             shouldReload: response.shouldReload,
             isLastPage: response.isLastPage)
         viewController?.displaySearchUser(viewModel: viewModel)
+    }
+    
+    func presentError(error: ServiceError) {
+        viewController?.displayError(
+            title: error.getTitle(),
+            message: error.getMessage()
+        )
     }
 }
