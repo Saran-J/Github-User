@@ -16,7 +16,7 @@ class UserListViewController: BaseViewController {
     var disposeBag = DisposeBag()
     let worker = FavoriteWorker()
     
-    let sortFilterSubject = BehaviorSubject<SortFilter>(
+    let sortFilterSubject = BehaviorRelay<SortFilter>(
         value: (sort: .bestMatch, filter: .noFilter))
     
     @IBOutlet weak var tableView: UITableView!
@@ -76,9 +76,10 @@ class UserListViewController: BaseViewController {
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        bindingSearchTextfield()
         setupTableView()
-        searchUserList(keyword: "", shouldReload: true)
+        bindingObject()
+        searchTextfield.sendActions(for: .editingChanged)
+//        searchUserList(keyword: "", shouldReload: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,26 +96,29 @@ class UserListViewController: BaseViewController {
     func setupTableView() {
         refreshControl.attributedTitle = NSAttributedString(string: "Refresh")
         refreshControl.rx.controlEvent(.valueChanged)
-            .bind { [weak self] _ in
-                self?.fetchData(shouldReload: true)
+            .bind { [unowned self] _ in
+                self.sortFilterSubject.accept((sort: self.sort, filter: self.filter))
             }
         .disposed(by: disposeBag)
         tableView.addSubview(refreshControl)
     }
     
-    func bindingSearchTextfield() {
-        searchTextfield.rx.controlEvent(.editingChanged)
-            .map { [weak self] () -> String in
-                return self?.searchTextfield.text ?? ""
-            }
-            .distinctUntilChanged()
-            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
-            .bind { [weak self] keyword in
-                self?.searchUserList(
-                    keyword: keyword,
-                    shouldReload: true)
-            }
-            .disposed(by: disposeBag)
+    func bindingObject() {
+        let searcObservable = searchTextfield.rx.controlEvent(.editingChanged)
+        .map { [weak self] () -> String in
+            return self?.searchTextfield.text ?? ""
+        }
+        .distinctUntilChanged()
+        .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
+        
+        Observable.combineLatest(sortFilterSubject, searcObservable)
+        .bind { [weak self] sortFilter, keyword in
+            print(sortFilter, keyword)
+            self?.searchUserList(
+                keyword: keyword,
+                shouldReload: true)
+        }
+        .disposed(by: disposeBag)
     }
     
     @IBAction func onTapFilterButton() {
@@ -134,6 +138,7 @@ extension UserListViewController: FilterViewDelegate {
         self.sort = sort
         self.filter = filter
         isFilterOrSort = !(sort == .bestMatch && filter == .noFilter)
+        sortFilterSubject.accept((sort: sort, filter: filter))
     }
 }
 
