@@ -49,8 +49,14 @@ enum FilterData: String {
     case favorite = "Only favorite"
 }
 
+struct SearchOptionData: Equatable {
+    var keyword: String
+    var sort: SortData
+    var filter: FilterData
+}
+
 protocol FilterViewDelegate: class {
-    func didFinishSortAndFilter(sort: SortData, filter: FilterData)
+    func didFinishSortAndFilter(searchData: SearchOptionData)
 }
 
 class FilterViewController: UIViewController {
@@ -83,6 +89,7 @@ class FilterViewController: UIViewController {
     
     weak var delegate: FilterViewDelegate?
     @IBOutlet weak var tableView: UITableView?
+    @IBOutlet weak var searchTextfield: UITextField!
     
     static func initFromStoryboard(sort: SortData, filter: FilterData) -> FilterViewController? {
         let filterVC = UIStoryboard(
@@ -103,7 +110,12 @@ class FilterViewController: UIViewController {
     }
     
     @IBAction func onTapDone() {
-        delegate?.didFinishSortAndFilter(sort: currentSort, filter: currentFilter)
+        let searchData = SearchOptionData(
+            keyword: toString(searchTextfield.text),
+            sort: currentSort,
+            filter: currentFilter
+        )
+        delegate?.didFinishSortAndFilter(searchData: searchData)
         dismiss(animated: true, completion: nil)
     }
 }

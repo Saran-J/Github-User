@@ -16,11 +16,15 @@ class UserListViewController: BaseViewController {
     var disposeBag = DisposeBag()
     let worker = FavoriteWorker()
     
-    let sortFilterSubject = BehaviorRelay<SortFilter>(
-        value: (sort: .bestMatch, filter: .noFilter))
+    let searchRelay = BehaviorRelay<SearchOptionData>(
+        value: SearchOptionData(
+            keyword: "",
+            sort: .bestMatch,
+            filter: .noFilter
+        )
+    )
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchTextfield: UITextField!
     @IBOutlet weak var filterButton: UIButton!
     
     var refreshControl = UIRefreshControl()
@@ -33,6 +37,7 @@ class UserListViewController: BaseViewController {
     }
     var sort: SortData = .bestMatch
     var filter: FilterData = .noFilter
+    var keyword: String = ""
     
     static func initFromStoryboard() -> UserListViewController? {
         return UIStoryboard(name: "UserList", bundle: nil).instantiateInitialViewController() as? UserListViewController
@@ -76,9 +81,27 @@ class UserListViewController: BaseViewController {
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupBarButtonItem()
         setupTableView()
-        bindingObject()
-        searchTextfield.sendActions(for: .editingChanged)
+        bindingSearchRelay()
+    }
+    
+    func bindingSearchRelay() {
+        searchRelay.asObservable()
+            .distinctUntilChanged()
+            .bind { [weak self] searchData in
+                print("search")
+                self?.updateLocalSearchData(searchData)
+                self?.fetchData(shouldReload: true)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func updateLocalSearchData(_ searchData: SearchOptionData) {
+        sort = searchData.sort
+        filter = searchData.filter
+        keyword = searchData.keyword
+        isFilterOrSort = !(sort == .bestMatch && filter == .noFilter && keyword.isEmpty)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,34 +122,16 @@ class UserListViewController: BaseViewController {
         interactor?.queryUserList(request: request)
     }
     
+    func setupBarButtonItem() {
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: filterButton)]
+    }
+    
     func setupTableView() {
         refreshControl.attributedTitle = NSAttributedString(string: "Refresh")
         refreshControl.rx.controlEvent(.valueChanged)
-            .bind { [unowned self] _ in
-                self.sortFilterSubject.accept((sort: self.sort, filter: self.filter))
+            .bind { [weak self] _ in
+                self?.fetchData(shouldReload: true)
             }
-        .disposed(by: disposeBag)
-        tableView.addSubview(refreshControl)
-    }
-    
-    func bindingObject() {
-        let searcObservable = searchTextfield.rx.controlEvent(.editingChanged)
-        .map { [weak self] () -> String in
-            return self?.searchTextfield.text ?? ""
-        }
-        .distinctUntilChanged()
-        .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
-        
-        Observable.combineLatest(sortFilterSubject, searcObservable)
-        .bind { [weak self] sortFilter, keyword in
-            guard let self = self else { return }
-            self.searchUserList(
-                keyword: keyword,
-                shouldReload: true,
-                sort: sortFilter.sort,
-                filter: sortFilter.filter
-            )
-        }
         .disposed(by: disposeBag)
     }
     
@@ -141,11 +146,16 @@ class UserListViewController: BaseViewController {
 }
 
 extension UserListViewController: FilterViewDelegate {
-    func didFinishSortAndFilter(sort: SortData, filter: FilterData) {
+    func didFinishSortAndFilter(searchData: SearchOptionData) {
+        searchRelay.accept(searchData)
+    }
+    
+    func didFinishSortAndFilter(keyword: String, sort: SortData, filter: FilterData) {
         self.sort = sort
         self.filter = filter
-        isFilterOrSort = !(sort == .bestMatch && filter == .noFilter)
-        sortFilterSubject.accept((sort: sort, filter: filter))
+        self.keyword = keyword
+        isFilterOrSort = !(sort == .bestMatch && filter == .noFilter && keyword.isEmpty)
+        fetchData(shouldReload: true)
     }
 }
 
@@ -170,9 +180,7 @@ extension UserListViewController: UserListDisplayLogic {
                 message: error.getMessage()) { [weak self] in
                 switch error.type {
                 case .needKeyword:
-                    self?.isFilterOrSort = false
-                    self?.sort = .bestMatch
-                    self?.filter = .noFilter
+                    self?.onTapFilterButton()
                 default: break
                 }
             }
@@ -186,7 +194,6 @@ extension UserListViewController: UserListDisplayLogic {
     }
     
     func fetchData(shouldReload: Bool) {
-        let keyword = toString(self.searchTextfield.text)
         self.searchUserList(
             keyword: keyword,
             shouldReload: shouldReload,
