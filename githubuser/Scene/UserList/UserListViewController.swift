@@ -3,8 +3,7 @@ import RxSwift
 import RxCocoa
 
 protocol UserListDisplayLogic: class {
-    func displayUserList(viewModel: UserList.FetchUserList.ViewModel)
-    func displaySearchUser(viewModel: UserList.SearchUser.ViewModel)
+    func displayUserList(viewModel: UserList.QueryUser.ViewModel)
     func displayError(title: String, message: String)
 }
 
@@ -72,16 +71,11 @@ class UserListViewController: BaseViewController {
         super.viewWillAppear(animated)
     }
     
-    func fetchUserList(shouldReload: Bool) {
-        let request = UserList.FetchUserList.Request(shouldReload: shouldReload)
-        interactor?.fetchUserList(request: request)
-    }
-    
     func searchUserList(keyword: String, shouldReload: Bool) {
-        let request = UserList.SearchUser.Request(
+        let request = UserList.QueryUser.Request(
             keyword: keyword,
             shouldReload: shouldReload)
-        interactor?.searchUser(request: request)
+        interactor?.queryUserList(request: request)
     }
     
     func setupTableView() {
@@ -111,20 +105,7 @@ class UserListViewController: BaseViewController {
 }
 
 extension UserListViewController: UserListDisplayLogic {
-    func displayUserList(viewModel: UserList.FetchUserList.ViewModel) {
-        if viewModel.shouldReload { userListDataSource = [] }
-        userListDataSource.append(contentsOf: viewModel.userListDisplay)
-        endRefreshing()
-        self.isLastPage = viewModel.isLastPage
-        self.tableView.reloadData()
-        DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
-            if viewModel.shouldReload {
-                self?.tableView.setContentOffset(.zero, animated: true)
-            }
-        }
-    }
-    
-    func displaySearchUser(viewModel: UserList.SearchUser.ViewModel) {
+    func displayUserList(viewModel: UserList.QueryUser.ViewModel) {
         if viewModel.shouldReload { userListDataSource = [] }
         userListDataSource.append(contentsOf: viewModel.userListDisplay)
         endRefreshing()
@@ -148,10 +129,7 @@ extension UserListViewController: UserListDisplayLogic {
     }
     
     func fetchData(shouldReload: Bool) {
-        guard let keyword = self.searchTextfield.text, !keyword.isEmpty else {
-            self.fetchUserList(shouldReload: shouldReload)
-            return
-        }
+        let keyword = toString(self.searchTextfield.text)
         self.searchUserList(keyword: keyword, shouldReload: shouldReload)
     }
 }

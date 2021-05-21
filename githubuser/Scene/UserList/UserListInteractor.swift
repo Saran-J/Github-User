@@ -3,8 +3,6 @@ import RxSwift
 
 protocol UserListBusinessLogic {
     func queryUserList(request: UserList.QueryUser.Request)
-    func fetchUserList(request: UserList.FetchUserList.Request)
-    func searchUser(request: UserList.SearchUser.Request)
     func favoriteUser(request: UserList.FavoriteUser.Request)
 }
 
@@ -26,10 +24,15 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
     var userList: [UserItem] = []
     
     func queryUserList(request: UserList.QueryUser.Request) {
+        if request.keyword.isEmpty {
+            fetchUserList(shouldReload: request.shouldReload)
+            return
+        }
+        searchUser(keyword: request.keyword, shouldReload: request.shouldReload)
     }
     
-    func fetchUserList(request: UserList.FetchUserList.Request) {
-        if request.shouldReload {
+    func fetchUserList(shouldReload: Bool) {
+        if shouldReload {
             lastUserId = 0
             self.userList = []
         }
@@ -46,9 +49,9 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
         .subscribe { [weak self] userList in
             self?.lastUserId = userList.last?.id ?? 0
             self?.userList.append(contentsOf: userList)
-            let response = UserList.FetchUserList.Response(
-                userListRespnse: userList,
-                shouldReload: request.shouldReload,
+            let response = UserList.QueryUser.Response(
+                searchResponse: userList,
+                shouldReload: shouldReload,
                 isLastPage: userList.count < toInt(self?.perPage))
             self?.presenter?.presentUserList(response: response)
         } onError: { [weak self] error in
@@ -80,15 +83,15 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
         return newResult
     }
     
-    func searchUser(request: UserList.SearchUser.Request) {
-        if request.shouldReload {
+    func searchUser(keyword: String, shouldReload: Bool) {
+        if shouldReload {
             self.userList = []
             page = 1
         } else {
             page += 1
         }
         let searchUserObservable = searchUserService.executeService(
-            keyword: request.keyword,
+            keyword: keyword,
             page: page,
             perPage: perPage
         )
@@ -103,11 +106,11 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
         }
         .subscribe { [weak self] searchResponse in
             self?.userList.append(contentsOf: searchResponse.0)
-            let response = UserList.SearchUser.Response(
+            let response = UserList.QueryUser.Response(
                 searchResponse: searchResponse.0,
-                shouldReload: request.shouldReload,
+                shouldReload: shouldReload,
                 isLastPage: searchResponse.1)
-            self?.presenter?.presentSearchUser(response: response)
+            self?.presenter?.presentUserList(response: response)
         } onError: { error in
             print(error)
         }
