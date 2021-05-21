@@ -7,12 +7,17 @@ protocol UserListDisplayLogic: class {
     func displayError(title: String, message: String)
 }
 
+typealias SortFilter = (sort: SortData, filter: FilterData)
+
 class UserListViewController: BaseViewController {
     var interactor: UserListBusinessLogic?
     var router: (NSObjectProtocol & UserListRoutingLogic & UserListDataPassing)?
     var userListDataSource: [UserListObject] = []
     var disposeBag = DisposeBag()
     let worker = FavoriteWorker()
+    
+    let sortFilterSubject = BehaviorSubject<SortFilter>(
+        value: (sort: .bestMatch, filter: .noFilter))
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchTextfield: UITextField!
