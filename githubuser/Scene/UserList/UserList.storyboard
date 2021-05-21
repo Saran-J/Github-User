@@ -35,7 +35,7 @@
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="k5X-ni-9mp" firstAttribute="centerX" secondItem="GHG-P3-rcG" secondAttribute="centerX" id="FHl-nG-Aav"/>
                                                     <constraint firstAttribute="width" constant="48" id="KT5-gT-lOg"/>
@@ -43,17 +43,39 @@
                                                 </constraints>
                                             </view>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kDl-0X-Mrv">
-                                                <rect key="frame" x="48" y="0.0" width="350" height="48"/>
+                                                <rect key="frame" x="48" y="0.0" width="302" height="48"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="oDh-dq-uax" id="Ci6-tF-ni5"/>
                                                 </connections>
                                             </textField>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XmI-os-y62">
+                                                <rect key="frame" x="350" y="0.0" width="48" height="48"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SaD-7j-iD0">
+                                                        <rect key="frame" x="8" y="8" width="32" height="32"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="32" id="Ju0-7Z-cmj"/>
+                                                            <constraint firstAttribute="width" constant="32" id="qRd-LP-0LO"/>
+                                                        </constraints>
+                                                        <state key="normal" image="filter"/>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="SaD-7j-iD0" firstAttribute="leading" secondItem="XmI-os-y62" secondAttribute="leading" constant="8" id="6YU-wJ-076"/>
+                                                    <constraint firstAttribute="width" constant="48" id="8J4-dk-l6s"/>
+                                                    <constraint firstItem="SaD-7j-iD0" firstAttribute="top" secondItem="XmI-os-y62" secondAttribute="top" constant="8" id="DQs-Dy-qYR"/>
+                                                    <constraint firstAttribute="bottom" secondItem="SaD-7j-iD0" secondAttribute="bottom" constant="8" id="E4P-ih-giw"/>
+                                                    <constraint firstAttribute="trailing" secondItem="SaD-7j-iD0" secondAttribute="trailing" constant="8" id="NyL-Wi-8sD"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="4Pw-I4-ZMH" secondAttribute="bottom" constant="8" id="FZA-fT-WPz"/>
                                     <constraint firstItem="4Pw-I4-ZMH" firstAttribute="top" secondItem="OHl-F3-JIe" secondAttribute="top" constant="8" id="OCj-bk-MjN"/>
@@ -196,6 +218,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="filter" width="170.66667175292969" height="170.66667175292969"/>
         <image name="search" width="200" height="199.33332824707031"/>
         <image name="unfavorite" width="250" height="250"/>
         <systemColor name="systemBackgroundColor">
