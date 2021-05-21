@@ -24,11 +24,19 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
     var userList: [UserItem] = []
     
     func queryUserList(request: UserList.QueryUser.Request) {
+        if request.keyword.isEmpty && request.sort != .bestMatch {
+            presenter?.presentError(error: ServiceError(.needKeyword))
+            return
+        }
+        
         if request.keyword.isEmpty {
             fetchUserList(shouldReload: request.shouldReload)
             return
         }
-        searchUser(keyword: request.keyword, shouldReload: request.shouldReload)
+        searchUser(
+            keyword: request.keyword,
+            shouldReload: request.shouldReload,
+            sort: request.sort)
     }
     
     func fetchUserList(shouldReload: Bool) {
@@ -83,7 +91,7 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
         return newResult
     }
     
-    func searchUser(keyword: String, shouldReload: Bool) {
+    func searchUser(keyword: String, shouldReload: Bool, sort: SortData) {
         if shouldReload {
             self.userList = []
             page = 1
@@ -92,6 +100,7 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
         }
         let searchUserObservable = searchUserService.executeService(
             keyword: keyword,
+            sort: sort,
             page: page,
             perPage: perPage
         )

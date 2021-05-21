@@ -62,4 +62,5 @@ public enum ErrorType: String {
     case saveDBError = "Can't save data"
     case downloadImageError = "Can't download image data"
     case unknownError = "Unknow Error"
+    case needKeyword = "Please enter keyword before \nand try to use sort function again"
 }

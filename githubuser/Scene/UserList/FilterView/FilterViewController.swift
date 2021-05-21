@@ -1,5 +1,10 @@
 import UIKit
 
+enum Order: String {
+    case asc
+    case desc
+}
+
 enum SortData: String {
     case bestMatch = "Best match"
     case mostFollowers = "Most followers"
@@ -8,6 +13,35 @@ enum SortData: String {
     case leastRecentlyJoined = "Least recently joned"
     case mostRepository = "Most repositories"
     case fewestRepository = "Fewest repositories"
+    
+    func queryString() -> String {
+        switch self {
+        case .bestMatch:
+            return ""
+        case .mostFollowers, .fewestFollowers:
+            return "followers"
+        case .mostRecentlyJoined, .leastRecentlyJoined:
+            return "joined"
+        case .mostRepository, .fewestRepository:
+            return "repositories"
+        }
+    }
+    
+    func orderQueryString() -> Order {
+        switch self {
+        case
+            .bestMatch,
+            .fewestFollowers,
+            .leastRecentlyJoined,
+            .fewestRepository:
+            return .desc
+        case
+            .mostFollowers,
+            .mostRecentlyJoined,
+            .mostRepository:
+            return .asc
+        }
+    }
 }
 
 enum FilterData: String {

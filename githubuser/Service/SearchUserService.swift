@@ -14,10 +14,11 @@ struct SearchUserResponse: Codable {
 }
 
 class SearchUserService: BaseService<UserProvider, SearchUserResponse> {
-    func executeService(keyword: String, page: Int, perPage: Int) -> Observable<SearchUserResponse> {
+    func executeService(keyword: String, sort: SortData, page: Int, perPage: Int) -> Observable<SearchUserResponse> {
         return super.callService(
             target: UserProvider.searchUser(
                 keyword: keyword,
+                sort: sort,
                 page: page,
                 perPage: perPage
             )

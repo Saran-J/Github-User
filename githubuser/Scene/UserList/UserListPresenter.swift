@@ -27,9 +27,6 @@ class UserListPresenter: UserListPresentationLogic {
     }
     
     func presentError(error: ServiceError) {
-        viewController?.displayError(
-            title: error.getTitle(),
-            message: error.getMessage()
-        )
+        viewController?.displayError(error: error)
     }
 }

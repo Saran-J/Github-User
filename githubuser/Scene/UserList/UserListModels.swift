@@ -5,6 +5,8 @@ enum UserList {
         struct Request {
             var keyword: String
             var shouldReload: Bool
+            var sort: SortData
+            var filter: FilterData
         }
         struct Response {
             var searchResponse: [UserItem]

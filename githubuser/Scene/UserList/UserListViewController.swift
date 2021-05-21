@@ -4,7 +4,7 @@ import RxCocoa
 
 protocol UserListDisplayLogic: class {
     func displayUserList(viewModel: UserList.QueryUser.ViewModel)
-    func displayError(title: String, message: String)
+    func displayError(error: ServiceError)
 }
 
 typealias SortFilter = (sort: SortData, filter: FilterData)
@@ -79,17 +79,23 @@ class UserListViewController: BaseViewController {
         setupTableView()
         bindingObject()
         searchTextfield.sendActions(for: .editingChanged)
-//        searchUserList(keyword: "", shouldReload: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
-    func searchUserList(keyword: String, shouldReload: Bool) {
+    func searchUserList(
+        keyword: String,
+        shouldReload: Bool,
+        sort: SortData,
+        filter: FilterData
+    ) {
         let request = UserList.QueryUser.Request(
             keyword: keyword,
-            shouldReload: shouldReload)
+            shouldReload: shouldReload,
+            sort: sort,
+            filter: filter)
         interactor?.queryUserList(request: request)
     }
     
@@ -113,10 +119,13 @@ class UserListViewController: BaseViewController {
         
         Observable.combineLatest(sortFilterSubject, searcObservable)
         .bind { [weak self] sortFilter, keyword in
-            print(sortFilter, keyword)
-            self?.searchUserList(
+            guard let self = self else { return }
+            self.searchUserList(
                 keyword: keyword,
-                shouldReload: true)
+                shouldReload: true,
+                sort: sortFilter.sort,
+                filter: sortFilter.filter
+            )
         }
         .disposed(by: disposeBag)
     }
@@ -125,9 +134,7 @@ class UserListViewController: BaseViewController {
         guard let filterVC = FilterViewController.initFromStoryboard(
             sort: sort,
             filter: filter
-        ) else {
-            return
-        }
+        ) else { return }
         filterVC.delegate = self
         present(filterVC, animated: true, completion: nil)
     }
@@ -156,8 +163,20 @@ extension UserListViewController: UserListDisplayLogic {
         }
     }
     
-    func displayError(title: String, message: String) {
-        displayMessage(title: title, message: message)
+    func displayError(error: ServiceError) {
+        DispatchQueue.main.async { [weak self] in
+            self?.displayMessageWithCallback(
+                title: error.getTitle(),
+                message: error.getMessage()) { [weak self] in
+                switch error.type {
+                case .needKeyword:
+                    self?.isFilterOrSort = false
+                    self?.sort = .bestMatch
+                    self?.filter = .noFilter
+                default: break
+                }
+            }
+        }
     }
     
     func endRefreshing() {
@@ -168,7 +187,12 @@ extension UserListViewController: UserListDisplayLogic {
     
     func fetchData(shouldReload: Bool) {
         let keyword = toString(self.searchTextfield.text)
-        self.searchUserList(keyword: keyword, shouldReload: shouldReload)
+        self.searchUserList(
+            keyword: keyword,
+            shouldReload: shouldReload,
+            sort: self.sort,
+            filter: self.filter
+        )
     }
 }
 
