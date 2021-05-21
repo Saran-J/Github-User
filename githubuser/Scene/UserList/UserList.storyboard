@@ -151,23 +151,49 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s6o-u9-oSf">
-                                <rect key="frame" x="0.0" y="88" width="414" height="64"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="84"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hWS-Mx-sdq">
-                                        <rect key="frame" x="48" y="8" width="358" height="48"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hWS-Mx-sdq" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                        <rect key="frame" x="48" y="18" width="358" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="DZG-c3-UfR"/>
                                         </constraints>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
+                                                <color key="value" systemColor="systemRedColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
+                                                <color key="value" systemColor="systemBlueColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="lineErrorColor">
+                                                <color key="value" systemColor="systemRedColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="textErrorColor">
+                                                <color key="value" systemColor="systemRedColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="titleErrorColor">
+                                                <color key="value" systemColor="systemRedColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="enter keyword"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outlet property="delegate" destination="oDh-dq-uax" id="KB0-GX-Snc"/>
+                                            <outlet property="delegate" destination="Avh-Ii-36h" id="w8J-12-A23"/>
                                         </connections>
                                     </textField>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="rgA-zo-GZY">
-                                        <rect key="frame" x="16" y="20" width="24" height="24"/>
+                                        <rect key="frame" x="16" y="30" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="ItI-8U-i1l"/>
                                             <constraint firstAttribute="height" constant="24" id="MnI-4W-YNH"/>
@@ -177,10 +203,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="rgA-zo-GZY" firstAttribute="leading" secondItem="s6o-u9-oSf" secondAttribute="leading" constant="16" id="17o-5p-lBJ"/>
-                                    <constraint firstItem="hWS-Mx-sdq" firstAttribute="top" secondItem="s6o-u9-oSf" secondAttribute="top" constant="8" id="3vD-r1-4qX"/>
+                                    <constraint firstItem="hWS-Mx-sdq" firstAttribute="centerY" secondItem="s6o-u9-oSf" secondAttribute="centerY" id="8gB-Lx-E0Y"/>
                                     <constraint firstItem="rgA-zo-GZY" firstAttribute="centerY" secondItem="s6o-u9-oSf" secondAttribute="centerY" id="H0A-rc-JMZ"/>
                                     <constraint firstItem="hWS-Mx-sdq" firstAttribute="leading" secondItem="rgA-zo-GZY" secondAttribute="trailing" constant="8" id="T9T-XO-FrL"/>
-                                    <constraint firstAttribute="height" constant="64" id="VMw-zh-NFe"/>
+                                    <constraint firstAttribute="height" constant="84" id="VMw-zh-NFe"/>
                                     <constraint firstAttribute="trailing" secondItem="hWS-Mx-sdq" secondAttribute="trailing" constant="8" id="aFz-TU-pZp"/>
                                 </constraints>
                             </view>
@@ -210,7 +236,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="wzy-fI-XhK">
-                                <rect key="frame" x="0.0" y="152" width="414" height="710"/>
+                                <rect key="frame" x="0.0" y="172" width="414" height="690"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Avh-Ii-36h" id="1Ut-P4-B1b"/>
@@ -234,7 +260,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="searchTextfield" destination="hWS-Mx-sdq" id="yBN-dD-bth"/>
+                        <outlet property="searchTextfield" destination="hWS-Mx-sdq" id="n0R-NR-fco"/>
                         <outlet property="tableView" destination="wzy-fI-XhK" id="EBF-PZ-FD5"/>
                     </connections>
                 </viewController>
@@ -259,6 +285,11 @@
             <point key="canvasLocation" x="-1684" y="-46"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="hWS-Mx-sdq">
+            <size key="intrinsicContentSize" width="358" height="41.607421875"/>
+        </designable>
+    </designables>
     <resources>
         <image name="filter" width="170.66667175292969" height="170.66667175292969"/>
         <image name="search" width="200" height="199.33332824707031"/>
@@ -268,6 +299,9 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

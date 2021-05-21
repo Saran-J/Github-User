@@ -137,6 +137,7 @@ class UserListViewController: BaseViewController {
     
     @IBAction func onTapFilterButton() {
         guard let filterVC = FilterViewController.initFromStoryboard(
+            keyword: keyword,
             sort: sort,
             filter: filter
         ) else { return }

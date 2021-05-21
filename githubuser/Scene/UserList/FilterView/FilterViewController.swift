@@ -1,4 +1,5 @@
 import UIKit
+import SkyFloatingLabelTextField
 
 enum Order: String {
     case asc
@@ -87,17 +88,20 @@ class FilterViewController: UIViewController {
         }
     }
     
+    var currentKeyword = ""
+    
     weak var delegate: FilterViewDelegate?
     @IBOutlet weak var tableView: UITableView?
-    @IBOutlet weak var searchTextfield: UITextField!
+    @IBOutlet weak var searchTextfield: SkyFloatingLabelTextField!
     
-    static func initFromStoryboard(sort: SortData, filter: FilterData) -> FilterViewController? {
+    static func initFromStoryboard(keyword: String, sort: SortData, filter: FilterData) -> FilterViewController? {
         let filterVC = UIStoryboard(
             name: "UserList",
             bundle: nil
         ).instantiateViewController(
             withIdentifier: "FilterVC"
         ) as? FilterViewController
+        filterVC?.currentKeyword = keyword
         filterVC?.currentSort = sort
         filterVC?.currentFilter = filter
         return filterVC
@@ -106,10 +110,16 @@ class FilterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView?.reloadData()
+        searchTextfield.text = currentKeyword
         // Do any additional setup after loading the view.
     }
     
     @IBAction func onTapDone() {
+        guard !toString(searchTextfield.text).isEmpty || currentSort == .bestMatch else {
+            searchTextfield.errorMessage = "Please type keyword first!"
+            return
+        }
+        searchTextfield.errorMessage = ""
         let searchData = SearchOptionData(
             keyword: toString(searchTextfield.text),
             sort: currentSort,
@@ -117,6 +127,13 @@ class FilterViewController: UIViewController {
         )
         delegate?.didFinishSortAndFilter(searchData: searchData)
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension FilterViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 
