@@ -2,6 +2,7 @@ import UIKit
 import RxSwift
 
 protocol UserListBusinessLogic {
+    func queryUserList(request: UserList.QueryUser.Request)
     func fetchUserList(request: UserList.FetchUserList.Request)
     func searchUser(request: UserList.SearchUser.Request)
     func favoriteUser(request: UserList.FavoriteUser.Request)
@@ -23,6 +24,9 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
     var favoriteWorker = FavoriteWorker()
     var favoriteUserList: [UserFavoriteModel] = []
     var userList: [UserItem] = []
+    
+    func queryUserList(request: UserList.QueryUser.Request) {
+    }
     
     func fetchUserList(request: UserList.FetchUserList.Request) {
         if request.shouldReload {

@@ -1,6 +1,24 @@
 import UIKit
 
 enum UserList {
+    
+    enum QueryUser {
+        struct Request {
+            var keyword: String
+            var shouldReload: Bool
+        }
+        struct Response {
+            var searchResponse: [UserItem]
+            var shouldReload: Bool
+            var isLastPage: Bool
+        }
+        struct ViewModel {
+            var userListDisplay: [UserListObject]
+            var shouldReload: Bool
+            var isLastPage: Bool
+        }
+    }
+    
     enum FetchUserList {
         struct Request {
             var shouldReload: Bool
