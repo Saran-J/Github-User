@@ -10,6 +10,7 @@
 		0F0F26ED2656ABA700B114B4 /* UserRepos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F0F26EC2656ABA700B114B4 /* UserRepos.storyboard */; };
 		0F0F26F32656ADE700B114B4 /* RepoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F26F22656ADE700B114B4 /* RepoCell.swift */; };
 		0F0F26FB2656BA3C00B114B4 /* RepoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F26FA2656BA3C00B114B4 /* RepoHeaderView.swift */; };
+		0F20080226580B75005D2101 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F20080126580B75005D2101 /* FilterViewController.swift */; };
 		0F55533B265424C4004E7B42 /* UserListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F555335265424C4004E7B42 /* UserListPresenter.swift */; };
 		0F55533D265424C4004E7B42 /* UserListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F555337265424C4004E7B42 /* UserListRouter.swift */; };
 		0F55533E265424C4004E7B42 /* UserListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F555338265424C4004E7B42 /* UserListModels.swift */; };
@@ -64,6 +65,7 @@
 		0F0F26EC2656ABA700B114B4 /* UserRepos.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserRepos.storyboard; sourceTree = "<group>"; };
 		0F0F26F22656ADE700B114B4 /* RepoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoCell.swift; sourceTree = "<group>"; };
 		0F0F26FA2656BA3C00B114B4 /* RepoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoHeaderView.swift; sourceTree = "<group>"; };
+		0F20080126580B75005D2101 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		0F555335265424C4004E7B42 /* UserListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListPresenter.swift; sourceTree = "<group>"; };
 		0F555337265424C4004E7B42 /* UserListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListRouter.swift; sourceTree = "<group>"; };
 		0F555338265424C4004E7B42 /* UserListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListModels.swift; sourceTree = "<group>"; };
@@ -146,6 +148,14 @@
 			path = tableviewCell;
 			sourceTree = "<group>";
 		};
+		0F2007F32657FBF8005D2101 /* FilterView */ = {
+			isa = PBXGroup;
+			children = (
+				0F20080126580B75005D2101 /* FilterViewController.swift */,
+			);
+			path = FilterView;
+			sourceTree = "<group>";
+		};
 		0F55533326542499004E7B42 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +169,7 @@
 		0F5553342654249F004E7B42 /* UserList */ = {
 			isa = PBXGroup;
 			children = (
+				0F2007F32657FBF8005D2101 /* FilterView */,
 				0F555355265438AE004E7B42 /* tableViewCell */,
 				0F555335265424C4004E7B42 /* UserListPresenter.swift */,
 				0F555337265424C4004E7B42 /* UserListRouter.swift */,
@@ -568,6 +579,7 @@
 				0F8C6AD3265579EB004CE566 /* FavoriteWorker.swift in Sources */,
 				0F0F26FB2656BA3C00B114B4 /* RepoHeaderView.swift in Sources */,
 				0F55534926543240004E7B42 /* StringExtension.swift in Sources */,
+				0F20080226580B75005D2101 /* FilterViewController.swift in Sources */,
 				0F55533F265424C4004E7B42 /* UserListViewController.swift in Sources */,
 				0FE6FE0F2652E79A00BBEC85 /* GetUserService.swift in Sources */,
 				0F8BBAD4264ED74D00C6F39B /* githubuser.xcdatamodeld in Sources */,
