@@ -8,6 +8,7 @@ target 'githubuser' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'Kingfisher', '~> 6.0'
+  pod 'JVFloatLabeledTextField'
 
   # Pods for githubuser
 
