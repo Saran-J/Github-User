@@ -1,7 +1,6 @@
 import UIKit
 
 enum UserList {
-    
     enum QueryUser {
         struct Request {
             var keyword: String
