@@ -16,9 +16,18 @@ class UserListViewController: BaseViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchTextfield: UITextField!
+    @IBOutlet weak var filterButton: UIButton!
     
     var refreshControl = UIRefreshControl()
     var isLastPage = false
+    var isFilterOrSort = false {
+        didSet {
+            let imageName = isFilterOrSort ? "filterActive" : "filter"
+            filterButton.setImage(UIImage(named: imageName), for: .normal)
+        }
+    }
+    var sort: SortData = .bestMatch
+    var filter: FilterData = .noFilter
     
     static func initFromStoryboard() -> UserListViewController? {
         return UIStoryboard(name: "UserList", bundle: nil).instantiateInitialViewController() as? UserListViewController
@@ -101,6 +110,25 @@ class UserListViewController: BaseViewController {
                     shouldReload: true)
             }
             .disposed(by: disposeBag)
+    }
+    
+    @IBAction func onTapFilterButton() {
+        guard let filterVC = FilterViewController.initFromStoryboard(
+            sort: sort,
+            filter: filter
+        ) else {
+            return
+        }
+        filterVC.delegate = self
+        present(filterVC, animated: true, completion: nil)
+    }
+}
+
+extension UserListViewController: FilterViewDelegate {
+    func didFinishSortAndFilter(sort: SortData, filter: FilterData) {
+        self.sort = sort
+        self.filter = filter
+        isFilterOrSort = !(sort == .bestMatch && filter == .noFilter)
     }
 }
 
