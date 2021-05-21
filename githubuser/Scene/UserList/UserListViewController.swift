@@ -64,7 +64,7 @@ class UserListViewController: BaseViewController {
         super.viewDidLoad()
         bindingSearchTextfield()
         setupTableView()
-        fetchUserList(shouldReload: true)
+        searchUserList(keyword: "", shouldReload: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
