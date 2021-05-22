@@ -23,6 +23,7 @@ enum UserList {
     enum FavoriteUser {
         struct Request {
             var userId: Int64
+            var userName: String
             var favorite: Bool
         }
     }

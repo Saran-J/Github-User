@@ -24,13 +24,17 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
     var userList: [UserItem] = []
     
     func queryUserList(request: UserList.QueryUser.Request) {
-        if request.keyword.isEmpty && request.sort != .bestMatch {
-            presenter?.presentError(error: ServiceError(.needKeyword))
+        if request.filter == .favorite {
+            fetchFavoriteList(
+                keyword: request.keyword,
+                shouldReload: request.shouldReload,
+                sort: request.sort
+            )
             return
         }
         
-        if request.keyword.isEmpty {
-            fetchUserList(shouldReload: request.shouldReload, filter: request.filter)
+        if request.keyword.isEmpty && request.sort == .bestMatch {
+            fetchUserList(shouldReload: request.shouldReload)
             return
         }
         searchUser(
@@ -39,7 +43,51 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
             sort: request.sort)
     }
     
-    func fetchUserList(shouldReload: Bool, filter: FilterData) {
+    func fetchFavoriteList(keyword: String, shouldReload: Bool, sort: SortData) {
+        if shouldReload {
+            self.userList = []
+            page = 0
+        } else {
+            page += 1
+        }
+        
+        self.fetchFavoriteUser(keyword: keyword, startIndex: page * perPage)
+        .map { result -> String in
+            var queryString = ""
+            result.forEach { model in
+                queryString += "user:\(model.name) "
+            }
+            return queryString
+        }
+        .flatMap { query in self.searchUserService.executeService(
+            keyword: query,
+            sort: sort,
+            page: 1,
+            perPage: self.perPage)
+        }
+        .map({ result -> [UserItem] in
+            let favoriteResult = result.items.map { item -> UserItem in
+                var newItem = item
+                newItem.favorite = true
+                return newItem
+            }
+            return favoriteResult
+        })
+        .subscribe { [weak self] result in
+            self?.userList.append(contentsOf: result)
+            let response = UserList.QueryUser.Response(
+                searchResponse: result,
+                shouldReload: shouldReload,
+                isLastPage: result.count < toInt(self?.perPage))
+            self?.presenter?.presentUserList(response: response)
+        } onError: { [weak self] error in
+            let serviceError = (error as? ServiceError) ?? ServiceError(.unknownError)
+            self?.presenter?.presentError(error: serviceError)
+        }
+        .disposed(by: disposeBag)
+    }
+    
+    func fetchUserList(shouldReload: Bool) {
         if shouldReload {
             lastUserId = 0
             self.userList = []
@@ -69,8 +117,8 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
         .disposed(by: disposeBag)
     }
     
-    private func fetchFavoriteUser() -> Observable<[UserFavoriteModel]> {
-        return favoriteWorker.fetchFavorite()
+    private func fetchFavoriteUser(keyword: String = "", startIndex: Int = 0) -> Observable<[UserFavoriteModel]> {
+        return favoriteWorker.fetchFavorite(keyword: keyword, startIndex: startIndex)
             .do { [weak self] favoriteList in
                 self?.favoriteUserList = favoriteList
             }
@@ -83,7 +131,7 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
         let newResult = userList.map { item -> UserItem in
             let isFavoorite = favoriteList.first { model -> Bool in
                 return model.id == Int64(toInt(item.id))
-            }?.isFavorite ?? false
+            } != nil
             var newItem = item
             newItem.favorite = isFavoorite
             return newItem
@@ -129,7 +177,7 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
     
     func favoriteUser(request: UserList.FavoriteUser.Request) {
         if request.favorite {
-            favoriteWorker.makeFavorite(userId: request.userId)
+            favoriteWorker.makeFavorite(userId: request.userId, uesrName: request.userName)
         } else {
             favoriteWorker.makeUnFavorite(userId: request.userId)
         }

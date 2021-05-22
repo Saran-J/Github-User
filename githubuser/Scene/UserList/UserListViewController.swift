@@ -220,7 +220,8 @@ extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
          
         cell.onFavorite = { [weak self] isFavorite in
             let userId = self?.userListDataSource[indexPath.row].id
-            self?.updateFavorite(userId: userId, favorite: isFavorite)
+            let userName = toString(self?.userListDataSource[indexPath.row].name)
+            self?.updateFavorite(userId: userId, userName: userName, favorite: isFavorite)
         }
         cell.downloadImage(imageUrl: userListDataSource[indexPath.row].avatarImageUrl)
         
@@ -240,10 +241,11 @@ extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
         router?.routeToUserRepositoryList(id: id)
     }
     
-    func updateFavorite(userId: Int64?, favorite: Bool) {
+    func updateFavorite(userId: Int64?, userName: String, favorite: Bool) {
         if let userId = userId {
             let request = UserList.FavoriteUser.Request(
                 userId: userId,
+                userName: userName,
                 favorite: favorite)
             interactor?.favoriteUser(request: request)
             userListDataSource.first { $0.id == userId }?.isFavorite = favorite
