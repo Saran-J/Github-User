@@ -22,6 +22,8 @@
 		0F5AAF71265979CA0030871A /* FavoriteWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5AAF70265979CA0030871A /* FavoriteWorker.swift */; };
 		0F5AAF7C265988E50030871A /* SearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5AAF7B265988E50030871A /* SearchWorker.swift */; };
 		0F5AAF8126598DB40030871A /* FetchUserWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5AAF8026598DB40030871A /* FetchUserWorker.swift */; };
+		0F5C129A2659B1230050F85A /* UserListViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C12992659B1230050F85A /* UserListViewControllerSpy.swift */; };
+		0F5C12A22659B1A20050F85A /* UserReposViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C12A12659B1A20050F85A /* UserReposViewControllerSpy.swift */; };
 		0F7576942651AAAD00ADCA06 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576932651AAAD00ADCA06 /* UserProvider.swift */; };
 		0F7576A42651B2AE00ADCA06 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576A32651B2AE00ADCA06 /* BaseService.swift */; };
 		0F7D85972656E44F00543EAA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7D85962656E44F00543EAA /* BaseViewController.swift */; };
@@ -78,6 +80,8 @@
 		0F5AAF70265979CA0030871A /* FavoriteWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteWorker.swift; sourceTree = "<group>"; };
 		0F5AAF7B265988E50030871A /* SearchWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWorker.swift; sourceTree = "<group>"; };
 		0F5AAF8026598DB40030871A /* FetchUserWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserWorker.swift; sourceTree = "<group>"; };
+		0F5C12992659B1230050F85A /* UserListViewControllerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewControllerSpy.swift; sourceTree = "<group>"; };
+		0F5C12A12659B1A20050F85A /* UserReposViewControllerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReposViewControllerSpy.swift; sourceTree = "<group>"; };
 		0F7576932651AAAD00ADCA06 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
 		0F7576A32651B2AE00ADCA06 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		0F7D85962656E44F00543EAA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +222,22 @@
 			path = Worker;
 			sourceTree = "<group>";
 		};
+		0F5C12972659B10B0050F85A /* stub */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = stub;
+			sourceTree = "<group>";
+		};
+		0F5C12982659B1100050F85A /* spy */ = {
+			isa = PBXGroup;
+			children = (
+				0F5C12992659B1230050F85A /* UserListViewControllerSpy.swift */,
+				0F5C12A12659B1A20050F85A /* UserReposViewControllerSpy.swift */,
+			);
+			path = spy;
+			sourceTree = "<group>";
+		};
 		0F75767F2651AA1800ADCA06 /* Provider */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +299,8 @@
 		0F8BBAE2264ED74E00C6F39B /* githubuserTests */ = {
 			isa = PBXGroup;
 			children = (
+				0F5C12982659B1100050F85A /* spy */,
+				0F5C12972659B10B0050F85A /* stub */,
 				0F8BBAE3264ED74E00C6F39B /* githubuserTests.swift */,
 				0F8BBAE5264ED74E00C6F39B /* Info.plist */,
 			);
@@ -612,7 +634,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F5C129A2659B1230050F85A /* UserListViewControllerSpy.swift in Sources */,
 				0F8BBAE4264ED74E00C6F39B /* githubuserTests.swift in Sources */,
+				0F5C12A22659B1A20050F85A /* UserReposViewControllerSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
