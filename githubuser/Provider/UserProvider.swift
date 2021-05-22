@@ -43,7 +43,7 @@ extension UserProvider: TargetType {
         case let .searchUser(keyword, sort, page, perPage):
             return .requestParameters(
                 parameters: [
-                    "q": keyword,
+                    "q": keyword.isEmpty ? "\"\"" : keyword,
                     "o": sort.orderQueryString(),
                     "sort": sort.queryString(),
                     "page": page,
