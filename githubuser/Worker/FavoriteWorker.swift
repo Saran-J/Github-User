@@ -6,7 +6,7 @@ import RxCocoa
 
 struct UserFavoriteModel {
     var id: Int64
-    var isFavorite: Bool
+    var name: String
 }
 
 class FavoriteWorker {
@@ -17,7 +17,7 @@ class FavoriteWorker {
         context = appDelegate?.persistentContainer.viewContext
     }
     
-    func makeFavorite(userId: Int64) {
+    func makeFavorite(userId: Int64, uesrName: String) {
         guard
             let context = self.context,
             let entity = NSEntityDescription.entity(
@@ -27,7 +27,7 @@ class FavoriteWorker {
         
         let newFavorite = NSManagedObject(entity: entity, insertInto: context)
         newFavorite.setValue(userId, forKey: "id")
-        newFavorite.setValue(true, forKey: "favorite")
+        newFavorite.setValue(uesrName, forKey: "user")
         do {
             try context.save()
         } catch {
@@ -53,13 +53,16 @@ class FavoriteWorker {
         }
     }
     
-    func fetchFavorite() -> Observable<[UserFavoriteModel]> {
+    func fetchFavorite(keyword: String = "", startIndex: Int = 0) -> Observable<[UserFavoriteModel]> {
         return Observable.create { observer in
             guard let context = self.context else {
                 observer.onError(ServiceError(ErrorType.fetchDBError))
                 return Disposables.create()
             }
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Favorite")
+            if !keyword.isEmpty {
+                request.predicate = NSPredicate(format: "user CONTAINS[c] '\(keyword)'")
+            }
             request.returnsObjectsAsFaults = false
             do {
                 let result = try context.fetch(request)
@@ -68,12 +71,19 @@ class FavoriteWorker {
                     return Disposables.create()
                 }
                 var userFavoriteList: [UserFavoriteModel] = []
-                for data in objectList {
+                if startIndex > objectList.count - 1 {
+                    observer.onNext([])
+                    return Disposables.create()
+                }
+                for index in startIndex...objectList.count - 1 {
+                    print(index)
+                    let data = objectList[index]
+                    let userName = toString(data.value(forKey: "user") as? String)
                     let favoriteModel = UserFavoriteModel(
                         id: data.value(
                             forKey: "id") as? Int64 ?? 0,
-                        isFavorite: data.value(
-                            forKey: "favorite") as? Bool ?? false)
+                        name: userName
+                    )
                     userFavoriteList.append(favoriteModel)
                 }
                 observer.onNext(userFavoriteList)
