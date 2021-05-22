@@ -12,7 +12,7 @@ struct UserFavoriteModel {
 class CoreDataWorker {
     weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
     var context: NSManagedObjectContext?
-    
+    var perPage: Int = 10
     init() {
         context = appDelegate?.persistentContainer.viewContext
     }
@@ -53,7 +53,7 @@ class CoreDataWorker {
         }
     }
     
-    func fetchFavorite(keyword: String = "", startIndex: Int = 0) -> Observable<[UserFavoriteModel]> {
+    func fetchFavorite(keyword: String = "", startIndex: Int = 0, pagination: Bool) -> Observable<[UserFavoriteModel]> {
         return Observable.create { observer in
             guard let context = self.context else {
                 observer.onError(ServiceError(ErrorType.fetchDBError))
@@ -75,8 +75,15 @@ class CoreDataWorker {
                     observer.onNext([])
                     return Disposables.create()
                 }
-                for index in startIndex...objectList.count - 1 {
-                    print(index)
+                let targetIndex: Int = {
+                    if !pagination || startIndex + self.perPage > objectList.count {
+                        return objectList.count
+                    }
+                    return (startIndex + self.perPage)
+                }()
+                
+                
+                for index in startIndex...targetIndex - 1 {
                     let data = objectList[index]
                     let userName = toString(data.value(forKey: "user") as? String)
                     let favoriteModel = UserFavoriteModel(
