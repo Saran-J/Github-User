@@ -115,10 +115,6 @@ class FilterViewController: UIViewController {
     }
     
     @IBAction func onTapDone() {
-        guard !toString(searchTextfield.text).isEmpty || currentSort == .bestMatch else {
-            searchTextfield.errorMessage = "Please type keyword first!"
-            return
-        }
         searchTextfield.errorMessage = ""
         let searchData = SearchOptionData(
             keyword: toString(searchTextfield.text),
