@@ -133,6 +133,7 @@ class UserListViewController: BaseViewController {
                 self?.fetchData(shouldReload: true)
             }
         .disposed(by: disposeBag)
+        tableView.addSubview(refreshControl)
     }
     
     @IBAction func onTapFilterButton() {

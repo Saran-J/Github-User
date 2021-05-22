@@ -30,7 +30,7 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
         }
         
         if request.keyword.isEmpty {
-            fetchUserList(shouldReload: request.shouldReload)
+            fetchUserList(shouldReload: request.shouldReload, filter: request.filter)
             return
         }
         searchUser(
@@ -39,7 +39,7 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
             sort: request.sort)
     }
     
-    func fetchUserList(shouldReload: Bool) {
+    func fetchUserList(shouldReload: Bool, filter: FilterData) {
         if shouldReload {
             lastUserId = 0
             self.userList = []
@@ -120,8 +120,9 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
                 shouldReload: shouldReload,
                 isLastPage: searchResponse.1)
             self?.presenter?.presentUserList(response: response)
-        } onError: { error in
-            print(error)
+        } onError: { [weak self] error in
+            let serviceError = (error as? ServiceError) ?? ServiceError(.unknownError)
+            self?.presenter?.presentError(error: serviceError)
         }
         .disposed(by: disposeBag)
     }
