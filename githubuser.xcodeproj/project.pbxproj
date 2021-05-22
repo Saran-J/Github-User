@@ -197,6 +197,14 @@
 			path = tableViewCell;
 			sourceTree = "<group>";
 		};
+		0F5AAF6E265973F50030871A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0F8C6AD12655795B004CE566 /* Worker */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		0F75767F2651AA1800ADCA06 /* Provider */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,7 +249,7 @@
 		0F8BBAC8264ED74D00C6F39B /* githubuser */ = {
 			isa = PBXGroup;
 			children = (
-				0F8C6AD12655795B004CE566 /* Worker */,
+				0F5AAF6E265973F50030871A /* Common */,
 				0F5553472654322E004E7B42 /* Extension */,
 				0F55533326542499004E7B42 /* Scene */,
 				0F7576A22651B2A000ADCA06 /* Service */,
