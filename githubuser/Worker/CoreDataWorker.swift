@@ -9,7 +9,7 @@ struct UserFavoriteModel {
     var name: String
 }
 
-class FavoriteWorker {
+class CoreDataWorker {
     weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
     var context: NSManagedObjectContext?
     

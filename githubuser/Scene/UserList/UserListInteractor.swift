@@ -19,7 +19,7 @@ class UserListInteractor: UserListBusinessLogic, UserListDataStore {
     var presenter: UserListPresentationLogic?
     var userListService = GetUserService()
     var searchUserService = SearchUserService()
-    var favoriteWorker = FavoriteWorker()
+    var favoriteWorker = CoreDataWorker()
     var favoriteUserList: [UserFavoriteModel] = []
     var userList: [UserItem] = []
     

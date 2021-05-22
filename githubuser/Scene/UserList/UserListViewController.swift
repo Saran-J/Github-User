@@ -14,7 +14,7 @@ class UserListViewController: BaseViewController {
     var router: (NSObjectProtocol & UserListRoutingLogic & UserListDataPassing)?
     var userListDataSource: [UserListObject] = []
     var disposeBag = DisposeBag()
-    let worker = FavoriteWorker()
+    let worker = CoreDataWorker()
     
     let searchRelay = BehaviorRelay<SearchOptionData>(
         value: SearchOptionData(
