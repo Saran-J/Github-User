@@ -19,6 +19,9 @@
 		0F55534926543240004E7B42 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F55534826543240004E7B42 /* StringExtension.swift */; };
 		0F555351265434FE004E7B42 /* UserList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F555350265434FE004E7B42 /* UserList.storyboard */; };
 		0F55535F265438F5004E7B42 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F55535E265438F5004E7B42 /* UserCell.swift */; };
+		0F5AAF71265979CA0030871A /* FavoriteWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5AAF70265979CA0030871A /* FavoriteWorker.swift */; };
+		0F5AAF7C265988E50030871A /* SearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5AAF7B265988E50030871A /* SearchWorker.swift */; };
+		0F5AAF8126598DB40030871A /* FetchUserWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5AAF8026598DB40030871A /* FetchUserWorker.swift */; };
 		0F7576942651AAAD00ADCA06 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576932651AAAD00ADCA06 /* UserProvider.swift */; };
 		0F7576A42651B2AE00ADCA06 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576A32651B2AE00ADCA06 /* BaseService.swift */; };
 		0F7D85972656E44F00543EAA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7D85962656E44F00543EAA /* BaseViewController.swift */; };
@@ -74,6 +77,9 @@
 		0F55534826543240004E7B42 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		0F555350265434FE004E7B42 /* UserList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserList.storyboard; sourceTree = "<group>"; };
 		0F55535E265438F5004E7B42 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		0F5AAF70265979CA0030871A /* FavoriteWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteWorker.swift; sourceTree = "<group>"; };
+		0F5AAF7B265988E50030871A /* SearchWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWorker.swift; sourceTree = "<group>"; };
+		0F5AAF8026598DB40030871A /* FetchUserWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserWorker.swift; sourceTree = "<group>"; };
 		0F7576932651AAAD00ADCA06 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
 		0F7576A32651B2AE00ADCA06 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		0F7D85962656E44F00543EAA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +177,7 @@
 			children = (
 				0F2007F32657FBF8005D2101 /* FilterView */,
 				0F555355265438AE004E7B42 /* tableViewCell */,
+				0F5AAF6F2659760E0030871A /* Worker */,
 				0F555335265424C4004E7B42 /* UserListPresenter.swift */,
 				0F555337265424C4004E7B42 /* UserListRouter.swift */,
 				0F555338265424C4004E7B42 /* UserListModels.swift */,
@@ -203,6 +210,16 @@
 				0F8C6AD12655795B004CE566 /* Worker */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		0F5AAF6F2659760E0030871A /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				0F5AAF70265979CA0030871A /* FavoriteWorker.swift */,
+				0F5AAF7B265988E50030871A /* SearchWorker.swift */,
+				0F5AAF8026598DB40030871A /* FetchUserWorker.swift */,
+			);
+			path = Worker;
 			sourceTree = "<group>";
 		};
 		0F75767F2651AA1800ADCA06 /* Provider */ = {
@@ -582,9 +599,12 @@
 				0F55533E265424C4004E7B42 /* UserListModels.swift in Sources */,
 				0FE6FE142652F5B900BBEC85 /* SearchUserService.swift in Sources */,
 				0F8C6AE626560E16004CE566 /* UserReposInteractor.swift in Sources */,
+				0F5AAF7C265988E50030871A /* SearchWorker.swift in Sources */,
 				0F55535F265438F5004E7B42 /* UserCell.swift in Sources */,
 				0F8C6AE326560E16004CE566 /* UserReposRouter.swift in Sources */,
 				0F8C6AD3265579EB004CE566 /* CoreDataWorker.swift in Sources */,
+				0F5AAF71265979CA0030871A /* FavoriteWorker.swift in Sources */,
+				0F5AAF8126598DB40030871A /* FetchUserWorker.swift in Sources */,
 				0F0F26FB2656BA3C00B114B4 /* RepoHeaderView.swift in Sources */,
 				0F55534926543240004E7B42 /* StringExtension.swift in Sources */,
 				0F20080226580B75005D2101 /* FilterViewController.swift in Sources */,
