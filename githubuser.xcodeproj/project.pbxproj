@@ -27,6 +27,9 @@
 		0F5C12A72659B28A0050F85A /* StubGetUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C12A62659B28A0050F85A /* StubGetUserService.swift */; };
 		0F5C12BC2659B3960050F85A /* StubSearchUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C12BB2659B3960050F85A /* StubSearchUserService.swift */; };
 		0F5C12C12659B3F60050F85A /* StubGetUserRepoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C12C02659B3F60050F85A /* StubGetUserRepoService.swift */; };
+		0F5C12C7265A44F40050F85A /* MockUserReposResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C12C6265A44F40050F85A /* MockUserReposResponse.swift */; };
+		0F5C12CF265A46A90050F85A /* MockGetUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C12CE265A46A90050F85A /* MockGetUserResponse.swift */; };
+		0F5C12D7265A47DF0050F85A /* MockSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C12D6265A47DF0050F85A /* MockSearchResponse.swift */; };
 		0F7576942651AAAD00ADCA06 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576932651AAAD00ADCA06 /* UserProvider.swift */; };
 		0F7576A42651B2AE00ADCA06 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576A32651B2AE00ADCA06 /* BaseService.swift */; };
 		0F7D85972656E44F00543EAA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7D85962656E44F00543EAA /* BaseViewController.swift */; };
@@ -88,6 +91,9 @@
 		0F5C12A62659B28A0050F85A /* StubGetUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubGetUserService.swift; sourceTree = "<group>"; };
 		0F5C12BB2659B3960050F85A /* StubSearchUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubSearchUserService.swift; sourceTree = "<group>"; };
 		0F5C12C02659B3F60050F85A /* StubGetUserRepoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubGetUserRepoService.swift; sourceTree = "<group>"; };
+		0F5C12C6265A44F40050F85A /* MockUserReposResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserReposResponse.swift; sourceTree = "<group>"; };
+		0F5C12CE265A46A90050F85A /* MockGetUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGetUserResponse.swift; sourceTree = "<group>"; };
+		0F5C12D6265A47DF0050F85A /* MockSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchResponse.swift; sourceTree = "<group>"; };
 		0F7576932651AAAD00ADCA06 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
 		0F7576A32651B2AE00ADCA06 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		0F7D85962656E44F00543EAA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -247,6 +253,16 @@
 			path = spy;
 			sourceTree = "<group>";
 		};
+		0F5C12C5265A44CF0050F85A /* mock */ = {
+			isa = PBXGroup;
+			children = (
+				0F5C12C6265A44F40050F85A /* MockUserReposResponse.swift */,
+				0F5C12CE265A46A90050F85A /* MockGetUserResponse.swift */,
+				0F5C12D6265A47DF0050F85A /* MockSearchResponse.swift */,
+			);
+			path = mock;
+			sourceTree = "<group>";
+		};
 		0F75767F2651AA1800ADCA06 /* Provider */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,6 +324,7 @@
 		0F8BBAE2264ED74E00C6F39B /* githubuserTests */ = {
 			isa = PBXGroup;
 			children = (
+				0F5C12C5265A44CF0050F85A /* mock */,
 				0F5C12982659B1100050F85A /* spy */,
 				0F5C12972659B10B0050F85A /* stub */,
 				0F8BBAE3264ED74E00C6F39B /* githubuserTests.swift */,
@@ -643,10 +660,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F5C12D7265A47DF0050F85A /* MockSearchResponse.swift in Sources */,
 				0F5C12BC2659B3960050F85A /* StubSearchUserService.swift in Sources */,
 				0F5C129A2659B1230050F85A /* UserListViewControllerSpy.swift in Sources */,
+				0F5C12CF265A46A90050F85A /* MockGetUserResponse.swift in Sources */,
 				0F5C12A72659B28A0050F85A /* StubGetUserService.swift in Sources */,
 				0F8BBAE4264ED74E00C6F39B /* githubuserTests.swift in Sources */,
+				0F5C12C7265A44F40050F85A /* MockUserReposResponse.swift in Sources */,
 				0F5C12A22659B1A20050F85A /* UserReposViewControllerSpy.swift in Sources */,
 				0F5C12C12659B3F60050F85A /* StubGetUserRepoService.swift in Sources */,
 			);
