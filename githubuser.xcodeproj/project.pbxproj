@@ -30,6 +30,8 @@
 		0F5C12C7265A44F40050F85A /* MockUserReposResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C12C6265A44F40050F85A /* MockUserReposResponse.swift */; };
 		0F5C12CF265A46A90050F85A /* MockGetUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C12CE265A46A90050F85A /* MockGetUserResponse.swift */; };
 		0F5C12D7265A47DF0050F85A /* MockSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C12D6265A47DF0050F85A /* MockSearchResponse.swift */; };
+		0F5C12E8265A51E50050F85A /* UserReposPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C12E7265A51E50050F85A /* UserReposPresenterSpy.swift */; };
+		0F5C12ED265A52880050F85A /* UserListPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C12EC265A52880050F85A /* UserListPresenterSpy.swift */; };
 		0F7576942651AAAD00ADCA06 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576932651AAAD00ADCA06 /* UserProvider.swift */; };
 		0F7576A42651B2AE00ADCA06 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576A32651B2AE00ADCA06 /* BaseService.swift */; };
 		0F7D85972656E44F00543EAA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7D85962656E44F00543EAA /* BaseViewController.swift */; };
@@ -94,6 +96,8 @@
 		0F5C12C6265A44F40050F85A /* MockUserReposResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserReposResponse.swift; sourceTree = "<group>"; };
 		0F5C12CE265A46A90050F85A /* MockGetUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGetUserResponse.swift; sourceTree = "<group>"; };
 		0F5C12D6265A47DF0050F85A /* MockSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchResponse.swift; sourceTree = "<group>"; };
+		0F5C12E7265A51E50050F85A /* UserReposPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReposPresenterSpy.swift; sourceTree = "<group>"; };
+		0F5C12EC265A52880050F85A /* UserListPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListPresenterSpy.swift; sourceTree = "<group>"; };
 		0F7576932651AAAD00ADCA06 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
 		0F7576A32651B2AE00ADCA06 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		0F7D85962656E44F00543EAA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -249,6 +253,8 @@
 			children = (
 				0F5C12992659B1230050F85A /* UserListViewControllerSpy.swift */,
 				0F5C12A12659B1A20050F85A /* UserReposViewControllerSpy.swift */,
+				0F5C12E7265A51E50050F85A /* UserReposPresenterSpy.swift */,
+				0F5C12EC265A52880050F85A /* UserListPresenterSpy.swift */,
 			);
 			path = spy;
 			sourceTree = "<group>";
@@ -261,6 +267,13 @@
 				0F5C12D6265A47DF0050F85A /* MockSearchResponse.swift */,
 			);
 			path = mock;
+			sourceTree = "<group>";
+		};
+		0F5C12DB265A50590050F85A /* test */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		0F75767F2651AA1800ADCA06 /* Provider */ = {
@@ -327,6 +340,7 @@
 				0F5C12C5265A44CF0050F85A /* mock */,
 				0F5C12982659B1100050F85A /* spy */,
 				0F5C12972659B10B0050F85A /* stub */,
+				0F5C12DB265A50590050F85A /* test */,
 				0F8BBAE3264ED74E00C6F39B /* githubuserTests.swift */,
 				0F8BBAE5264ED74E00C6F39B /* Info.plist */,
 			);
@@ -660,7 +674,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F5C12ED265A52880050F85A /* UserListPresenterSpy.swift in Sources */,
 				0F5C12D7265A47DF0050F85A /* MockSearchResponse.swift in Sources */,
+				0F5C12E8265A51E50050F85A /* UserReposPresenterSpy.swift in Sources */,
 				0F5C12BC2659B3960050F85A /* StubSearchUserService.swift in Sources */,
 				0F5C129A2659B1230050F85A /* UserListViewControllerSpy.swift in Sources */,
 				0F5C12CF265A46A90050F85A /* MockGetUserResponse.swift in Sources */,
