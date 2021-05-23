@@ -32,6 +32,8 @@
 		0F5C12D7265A47DF0050F85A /* MockSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C12D6265A47DF0050F85A /* MockSearchResponse.swift */; };
 		0F5C12E8265A51E50050F85A /* UserReposPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C12E7265A51E50050F85A /* UserReposPresenterSpy.swift */; };
 		0F5C12ED265A52880050F85A /* UserListPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C12EC265A52880050F85A /* UserListPresenterSpy.swift */; };
+		0F5C12F6265A53A80050F85A /* UserReposInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C12F5265A53A80050F85A /* UserReposInteractorTest.swift */; };
+		0F5C12FE265A54A70050F85A /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C12FD265A54A70050F85A /* Common.swift */; };
 		0F7576942651AAAD00ADCA06 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576932651AAAD00ADCA06 /* UserProvider.swift */; };
 		0F7576A42651B2AE00ADCA06 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576A32651B2AE00ADCA06 /* BaseService.swift */; };
 		0F7D85972656E44F00543EAA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7D85962656E44F00543EAA /* BaseViewController.swift */; };
@@ -98,6 +100,8 @@
 		0F5C12D6265A47DF0050F85A /* MockSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchResponse.swift; sourceTree = "<group>"; };
 		0F5C12E7265A51E50050F85A /* UserReposPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReposPresenterSpy.swift; sourceTree = "<group>"; };
 		0F5C12EC265A52880050F85A /* UserListPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListPresenterSpy.swift; sourceTree = "<group>"; };
+		0F5C12F5265A53A80050F85A /* UserReposInteractorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReposInteractorTest.swift; sourceTree = "<group>"; };
+		0F5C12FD265A54A70050F85A /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		0F7576932651AAAD00ADCA06 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
 		0F7576A32651B2AE00ADCA06 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		0F7D85962656E44F00543EAA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -244,6 +248,7 @@
 				0F5C12A62659B28A0050F85A /* StubGetUserService.swift */,
 				0F5C12BB2659B3960050F85A /* StubSearchUserService.swift */,
 				0F5C12C02659B3F60050F85A /* StubGetUserRepoService.swift */,
+				0F5C12FD265A54A70050F85A /* Common.swift */,
 			);
 			path = stub;
 			sourceTree = "<group>";
@@ -272,8 +277,17 @@
 		0F5C12DB265A50590050F85A /* test */ = {
 			isa = PBXGroup;
 			children = (
+				0F5C12F4265A53960050F85A /* UserRepos */,
 			);
 			path = test;
+			sourceTree = "<group>";
+		};
+		0F5C12F4265A53960050F85A /* UserRepos */ = {
+			isa = PBXGroup;
+			children = (
+				0F5C12F5265A53A80050F85A /* UserReposInteractorTest.swift */,
+			);
+			path = UserRepos;
 			sourceTree = "<group>";
 		};
 		0F75767F2651AA1800ADCA06 /* Provider */ = {
@@ -676,11 +690,13 @@
 			files = (
 				0F5C12ED265A52880050F85A /* UserListPresenterSpy.swift in Sources */,
 				0F5C12D7265A47DF0050F85A /* MockSearchResponse.swift in Sources */,
+				0F5C12FE265A54A70050F85A /* Common.swift in Sources */,
 				0F5C12E8265A51E50050F85A /* UserReposPresenterSpy.swift in Sources */,
 				0F5C12BC2659B3960050F85A /* StubSearchUserService.swift in Sources */,
 				0F5C129A2659B1230050F85A /* UserListViewControllerSpy.swift in Sources */,
 				0F5C12CF265A46A90050F85A /* MockGetUserResponse.swift in Sources */,
 				0F5C12A72659B28A0050F85A /* StubGetUserService.swift in Sources */,
+				0F5C12F6265A53A80050F85A /* UserReposInteractorTest.swift in Sources */,
 				0F8BBAE4264ED74E00C6F39B /* githubuserTests.swift in Sources */,
 				0F5C12C7265A44F40050F85A /* MockUserReposResponse.swift in Sources */,
 				0F5C12A22659B1A20050F85A /* UserReposViewControllerSpy.swift in Sources */,
