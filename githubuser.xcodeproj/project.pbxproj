@@ -35,6 +35,9 @@
 		0F5C12F6265A53A80050F85A /* UserReposInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C12F5265A53A80050F85A /* UserReposInteractorTest.swift */; };
 		0F5C12FE265A54A70050F85A /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C12FD265A54A70050F85A /* Common.swift */; };
 		0F5C1303265A5AE40050F85A /* UserReposPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C1302265A5AE40050F85A /* UserReposPresenterTest.swift */; };
+		0F5C1311265A6A060050F85A /* UserListInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C1310265A6A060050F85A /* UserListInteractorTest.swift */; };
+		0F5C1321265AB0D10050F85A /* UserListInteractorTest+FetchUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C1320265AB0D10050F85A /* UserListInteractorTest+FetchUser.swift */; };
+		0F5C1326265AB1530050F85A /* UserListInteractorTest+SearchUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C1325265AB1530050F85A /* UserListInteractorTest+SearchUser.swift */; };
 		0F7576942651AAAD00ADCA06 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576932651AAAD00ADCA06 /* UserProvider.swift */; };
 		0F7576A42651B2AE00ADCA06 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7576A32651B2AE00ADCA06 /* BaseService.swift */; };
 		0F7D85972656E44F00543EAA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7D85962656E44F00543EAA /* BaseViewController.swift */; };
@@ -53,6 +56,9 @@
 		0FE6FE0F2652E79A00BBEC85 /* GetUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE6FE0E2652E79A00BBEC85 /* GetUserService.swift */; };
 		0FE6FE142652F5B900BBEC85 /* SearchUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE6FE132652F5B900BBEC85 /* SearchUserService.swift */; };
 		0FE6FE192652F84A00BBEC85 /* GetUserRepoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE6FE182652F84A00BBEC85 /* GetUserRepoService.swift */; };
+		0FF064B9265AB3C600EB6732 /* StubCoreDataWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF064B8265AB3C600EB6732 /* StubCoreDataWorker.swift */; };
+		0FF064C1265AB5FF00EB6732 /* UserListInteractorTest+FilterFavoriteUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF064C0265AB5FF00EB6732 /* UserListInteractorTest+FilterFavoriteUser.swift */; };
+		0FF064C6265ABCBE00EB6732 /* UserListPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF064C5265ABCBE00EB6732 /* UserListPresenterTest.swift */; };
 		92C901B9D943ECC6B3A5D742 /* Pods_githubuser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3F4D19419B8A143302607DB /* Pods_githubuser.framework */; };
 		BAA752965C31481098214878 /* Pods_githubuserTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 352E38C072EE8E9392B75D62 /* Pods_githubuserTests.framework */; };
 		F7C87DA60E7181CA60082A9C /* Pods_githubuser_githubuserUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FED86802C0CEC58FAC355E0 /* Pods_githubuser_githubuserUITests.framework */; };
@@ -104,6 +110,9 @@
 		0F5C12F5265A53A80050F85A /* UserReposInteractorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReposInteractorTest.swift; sourceTree = "<group>"; };
 		0F5C12FD265A54A70050F85A /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		0F5C1302265A5AE40050F85A /* UserReposPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReposPresenterTest.swift; sourceTree = "<group>"; };
+		0F5C1310265A6A060050F85A /* UserListInteractorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListInteractorTest.swift; sourceTree = "<group>"; };
+		0F5C1320265AB0D10050F85A /* UserListInteractorTest+FetchUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserListInteractorTest+FetchUser.swift"; sourceTree = "<group>"; };
+		0F5C1325265AB1530050F85A /* UserListInteractorTest+SearchUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserListInteractorTest+SearchUser.swift"; sourceTree = "<group>"; };
 		0F7576932651AAAD00ADCA06 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
 		0F7576A32651B2AE00ADCA06 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		0F7D85962656E44F00543EAA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +137,9 @@
 		0FE6FE0E2652E79A00BBEC85 /* GetUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserService.swift; sourceTree = "<group>"; };
 		0FE6FE132652F5B900BBEC85 /* SearchUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserService.swift; sourceTree = "<group>"; };
 		0FE6FE182652F84A00BBEC85 /* GetUserRepoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserRepoService.swift; sourceTree = "<group>"; };
+		0FF064B8265AB3C600EB6732 /* StubCoreDataWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubCoreDataWorker.swift; sourceTree = "<group>"; };
+		0FF064C0265AB5FF00EB6732 /* UserListInteractorTest+FilterFavoriteUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserListInteractorTest+FilterFavoriteUser.swift"; sourceTree = "<group>"; };
+		0FF064C5265ABCBE00EB6732 /* UserListPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListPresenterTest.swift; sourceTree = "<group>"; };
 		116318B60857F4DC32069858 /* Pods-githubuser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-githubuser.release.xcconfig"; path = "Target Support Files/Pods-githubuser/Pods-githubuser.release.xcconfig"; sourceTree = "<group>"; };
 		352E38C072EE8E9392B75D62 /* Pods_githubuserTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_githubuserTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67FD471CBDFD788EB28C7315 /* Pods-githubuser-githubuserUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-githubuser-githubuserUITests.debug.xcconfig"; path = "Target Support Files/Pods-githubuser-githubuserUITests/Pods-githubuser-githubuserUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -247,6 +259,7 @@
 		0F5C12972659B10B0050F85A /* stub */ = {
 			isa = PBXGroup;
 			children = (
+				0FF064B8265AB3C600EB6732 /* StubCoreDataWorker.swift */,
 				0F5C12A62659B28A0050F85A /* StubGetUserService.swift */,
 				0F5C12BB2659B3960050F85A /* StubSearchUserService.swift */,
 				0F5C12C02659B3F60050F85A /* StubGetUserRepoService.swift */,
@@ -279,6 +292,7 @@
 		0F5C12DB265A50590050F85A /* test */ = {
 			isa = PBXGroup;
 			children = (
+				0F5C130F265A69E70050F85A /* UserList */,
 				0F5C12F4265A53960050F85A /* UserRepos */,
 			);
 			path = test;
@@ -291,6 +305,18 @@
 				0F5C1302265A5AE40050F85A /* UserReposPresenterTest.swift */,
 			);
 			path = UserRepos;
+			sourceTree = "<group>";
+		};
+		0F5C130F265A69E70050F85A /* UserList */ = {
+			isa = PBXGroup;
+			children = (
+				0F5C1310265A6A060050F85A /* UserListInteractorTest.swift */,
+				0F5C1320265AB0D10050F85A /* UserListInteractorTest+FetchUser.swift */,
+				0F5C1325265AB1530050F85A /* UserListInteractorTest+SearchUser.swift */,
+				0FF064C0265AB5FF00EB6732 /* UserListInteractorTest+FilterFavoriteUser.swift */,
+				0FF064C5265ABCBE00EB6732 /* UserListPresenterTest.swift */,
+			);
+			path = UserList;
 			sourceTree = "<group>";
 		};
 		0F75767F2651AA1800ADCA06 /* Provider */ = {
@@ -691,17 +717,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FF064B9265AB3C600EB6732 /* StubCoreDataWorker.swift in Sources */,
 				0F5C12ED265A52880050F85A /* UserListPresenterSpy.swift in Sources */,
 				0F5C12D7265A47DF0050F85A /* MockSearchResponse.swift in Sources */,
 				0F5C12FE265A54A70050F85A /* Common.swift in Sources */,
 				0F5C12E8265A51E50050F85A /* UserReposPresenterSpy.swift in Sources */,
 				0F5C12BC2659B3960050F85A /* StubSearchUserService.swift in Sources */,
+				0F5C1311265A6A060050F85A /* UserListInteractorTest.swift in Sources */,
 				0F5C129A2659B1230050F85A /* UserListViewControllerSpy.swift in Sources */,
 				0F5C12CF265A46A90050F85A /* MockGetUserResponse.swift in Sources */,
 				0F5C12A72659B28A0050F85A /* StubGetUserService.swift in Sources */,
 				0F5C12F6265A53A80050F85A /* UserReposInteractorTest.swift in Sources */,
+				0F5C1326265AB1530050F85A /* UserListInteractorTest+SearchUser.swift in Sources */,
 				0F8BBAE4264ED74E00C6F39B /* githubuserTests.swift in Sources */,
+				0FF064C6265ABCBE00EB6732 /* UserListPresenterTest.swift in Sources */,
 				0F5C12C7265A44F40050F85A /* MockUserReposResponse.swift in Sources */,
+				0F5C1321265AB0D10050F85A /* UserListInteractorTest+FetchUser.swift in Sources */,
+				0FF064C1265AB5FF00EB6732 /* UserListInteractorTest+FilterFavoriteUser.swift in Sources */,
 				0F5C1303265A5AE40050F85A /* UserReposPresenterTest.swift in Sources */,
 				0F5C12A22659B1A20050F85A /* UserReposViewControllerSpy.swift in Sources */,
 				0F5C12C12659B3F60050F85A /* StubGetUserRepoService.swift in Sources */,
