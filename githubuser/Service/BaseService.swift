@@ -3,9 +3,18 @@ import Moya
 import RxSwift
 
 class BaseService<Type: TargetType, Resp: Codable> {
+    let isUnitTest: Bool
+    
+    public init(unitTest: Bool = false) {
+        self.isUnitTest = unitTest
+    }
+    
     func callService(target: Type) -> Observable<Resp> {
         let observable = Observable<Result<Response, MoyaError>>.create { observer in
-            let provider = MoyaProvider<Type>(plugins: [NetworkLoggerPlugin()])
+            var provider = MoyaProvider<Type>(plugins: [NetworkLoggerPlugin()])
+            if self.isUnitTest {
+                provider = MoyaProvider<Type>.init(stubClosure: MoyaProvider<Type>.immediatelyStub)
+            }
             provider.request(target) { response in
                 observer.onNext(response)
             }

@@ -65,6 +65,22 @@ extension UserProvider: TargetType {
     }
     
     var sampleData: Data {
-        return "".data(using: .utf8) ?? Data.init()
+        switch self {
+        case .fetchUser(let lastId, _):
+            if lastId != 1 {
+                return "fail value".data(using: .utf8) ?? Data.init()
+            }
+            return ProviderTestData.userListData.data(using: .utf8) ?? Data.init()
+        case .searchUser(let keyword, _, _, _):
+            if keyword != "success" {
+                return "fail value".data(using: .utf8) ?? Data.init()
+            }
+            return ProviderTestData.searchUserData.data(using: .utf8) ?? Data.init()
+        case .fetchUserRepo(let user, _, _):
+            if user != "success" {
+                return "fail value".data(using: .utf8) ?? Data.init()
+            }
+            return ProviderTestData.userReposData.data(using: .utf8) ?? Data.init()
+        }
     }
 }
