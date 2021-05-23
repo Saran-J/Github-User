@@ -3,16 +3,22 @@ import RxSwift
 @testable import githubuser
 
 class StubSearchUserService: SearchUserService {
+    let resultCase: MockResult
+    public init(mockResult: MockResult) {
+        resultCase = mockResult
+    }
     override func executeService(
         keyword: String,
         sort: SortData,
         page: Int,
         perPage: Int
     ) -> Observable<SearchUserResponse> {
-        let response = SearchUserResponse(
-            totalCount: 0,
-            incompleteResults: false,
-            items: [])
-        return .just(response)
+        switch self.resultCase {
+        case .success:
+            return .just(MockSearchResponse.getMock())
+        case .failure(let error): return .error(error)
+        case .failureUnknowError(let error):
+            return .error(error)
+        }
     }
 }

@@ -15,6 +15,8 @@ class StubGetUserRepoService: GetUserRepoService {
         switch self.resultCase {
         case .success: return .just([MockUserReposResponse.getMock()])
         case .failure(let error): return .error(error)
+        case .failureUnknowError(let error):
+            return .error(error)
         }
     }
 }
