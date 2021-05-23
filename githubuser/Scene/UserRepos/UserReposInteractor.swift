@@ -44,6 +44,7 @@ class UserReposInteractor: UserReposBusinessLogic, UserReposDataStore {
         shouldReload: Bool
         ) {
         guard let userItem = self.userItem else {
+            presenter?.presentError(error: ServiceError(.noData))
             return
         }
         let response = UserRepos.FetchUserRepository.Response(
