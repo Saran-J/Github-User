@@ -380,10 +380,7 @@
 		0F8BBAE2264ED74E00C6F39B /* githubuserTests */ = {
 			isa = PBXGroup;
 			children = (
-				0F5C12C5265A44CF0050F85A /* mock */,
-				0F5C12982659B1100050F85A /* spy */,
-				0F5C12972659B10B0050F85A /* stub */,
-				0F5C12DB265A50590050F85A /* test */,
+				0FF064CA265ABECB00EB6732 /* Scene */,
 				0F8BBAE3264ED74E00C6F39B /* githubuserTests.swift */,
 				0F8BBAE5264ED74E00C6F39B /* Info.plist */,
 			);
@@ -419,6 +416,17 @@
 				0F0F26EC2656ABA700B114B4 /* UserRepos.storyboard */,
 			);
 			path = UserRepos;
+			sourceTree = "<group>";
+		};
+		0FF064CA265ABECB00EB6732 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				0F5C12C5265A44CF0050F85A /* mock */,
+				0F5C12982659B1100050F85A /* spy */,
+				0F5C12972659B10B0050F85A /* stub */,
+				0F5C12DB265A50590050F85A /* test */,
+			);
+			path = Scene;
 			sourceTree = "<group>";
 		};
 		5CEF977780DB0AB17466F8E1 /* Pods */ = {
